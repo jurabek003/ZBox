@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="uz.turgunboyevjurabek.zbox.fragment.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productFragment"
+            app:destination="@id/productFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_clientFragment"
+            app:destination="@id/clientFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_sellerFragment"
+            app:destination="@id/sellerFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/clientFragment"
+        android:name="uz.turgunboyevjurabek.zbox.fragment.ClientFragment"
+        android:label="fragment_client"
+        tools:layout="@layout/fragment_client" />
+    <fragment
+        android:id="@+id/productFragment"
+        android:name="uz.turgunboyevjurabek.zbox.fragment.ProductFragment"
+        android:label="fragment_product"
+        tools:layout="@layout/fragment_product" />
+    <fragment
+        android:id="@+id/sellerFragment"
+        android:name="uz.turgunboyevjurabek.zbox.fragment.SellerFragment"
+        android:label="fragment_seller"
+        tools:layout="@layout/fragment_seller" />
+</navigation>
