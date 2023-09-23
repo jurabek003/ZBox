@@ -5,56 +5,107 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.R
+import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
+import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
+import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding
+import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
+import uz.turgunboyevjurabek.zbox.madels.Clients_Get
+import uz.turgunboyevjurabek.zbox.madels.Clients_Post
+import uz.turgunboyevjurabek.zbox.network.ApiClinet
+import uz.turgunboyevjurabek.zbox.network.ApiServis
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ClientFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ClientFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
+    private lateinit var apiServis: ApiServis
+    private lateinit var list: ArrayList<Clients_Get>
+    private lateinit var rvClientAdapter: RvClientAdapter
+    private val binding by lazy { FragmentClientBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_client, container, false)
+
+       apiWorking()
+
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ClientFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ClientFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun apiWorking() {
+        apiServis=ApiClinet.getApiServis(requireContext())
+
+        //api clientlarni hammasini olib kelish uchun
+        apiServis.getClients().enqueue(object :Callback<ArrayList<Clients_Get>>{
+            override fun onResponse(
+                call: Call<ArrayList<Clients_Get>>,
+                response: Response<ArrayList<Clients_Get>>,
+            ) {
+                if (response.isSuccessful && response.body()!=null){
+
+                    list= ArrayList()
+                    list.addAll(response.body()!!)
+                    adapterRv()
                 }
             }
+
+            override fun onFailure(call: Call<ArrayList<Clients_Get>>, t: Throwable) {
+                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+            }
+        })
+
+        // api ga post qilish uchun
+        binding.btnFloatingClient.setOnClickListener {
+            val itemAddClientBinding=ItemAddClientBinding.inflate(layoutInflater)
+            val dialogPost= MaterialAlertDialogBuilder(requireContext()).create()
+            dialogPost.setView(itemAddClientBinding.root)
+            dialogPost.show()
+
+            itemAddClientBinding.btnSave.setOnClickListener {
+                itemAddClientBinding.apply {
+                    if (!clientName.text.isNullOrEmpty() && !clientLastName.text.isNullOrEmpty() && !clientManzil.text.isNullOrEmpty() && !clientTel.text.isNullOrEmpty() && !clientSumma.text.isNullOrEmpty()){
+                        val clientsPost=Client_Post_Request(clientName.text.toString(),clientLastName.text.toString(),clientManzil.text.toString(),clientTel.text.toString(),clientSumma.text.toString().toInt())
+                        apiServis.postClient(clientsPost).enqueue(object :Callback<ArrayList<Clients_Post>>{
+                            override fun onResponse(
+                                call: Call<ArrayList<Clients_Post>>,
+                                response: Response<ArrayList<Clients_Post>>,
+                            ) {
+                                if (response.isSuccessful && response.body()!=null){
+                                    Toast.makeText(requireContext(), "YEsssssssssssssss", Toast.LENGTH_SHORT).show()
+                                    dialogPost.cancel()
+                                }
+                            }
+
+                            override fun onFailure(
+                                call: Call<ArrayList<Clients_Post>>,
+                                t: Throwable,
+                            ) {
+                                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+
+                            }
+                        })
+                    }
+                }
+
+            }
+
+        }
+
+
+    }
+    private fun adapterRv(){
+        rvClientAdapter=RvClientAdapter(list)
+        binding.rvClient.adapter=rvClientAdapter
+        rvClientAdapter.notifyDataSetChanged()
     }
 }

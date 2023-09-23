@@ -7,11 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uz.turgunboyevjurabek.zbox.Adapter.AdapterProduct
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.databinding.FragmentProductBinding
 import uz.turgunboyevjurabek.zbox.madels.Product
@@ -19,7 +17,6 @@ import uz.turgunboyevjurabek.zbox.network.ApiClinet
 
 class ProductFragment : Fragment() {
   private val binding by lazy { FragmentProductBinding.inflate(layoutInflater) }
-    private lateinit var adapterProduct: AdapterProduct
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -35,8 +32,7 @@ class ProductFragment : Fragment() {
                 response: Response<ArrayList<Product>>
             ) {
                 if (response.isSuccessful){
-                    adapterProduct=AdapterProduct(response.body() as ArrayList<Product>)
-                    binding.productRv.adapter=adapterProduct
+                    binding.tvText.text=response.body().toString()
                 }
                 else{
                     Toast.makeText(context, "Yuklashdagi xatolik", Toast.LENGTH_SHORT).show()
@@ -52,9 +48,6 @@ class ProductFragment : Fragment() {
 
 
 
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
 
 
 

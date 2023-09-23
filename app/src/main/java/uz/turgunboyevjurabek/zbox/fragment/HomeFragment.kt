@@ -28,6 +28,7 @@ class HomeFragment : Fragment() {
 
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
+        findNavController().popBackStack()
         binding.btn3.setOnClickListener {
             findNavController().navigate(R.id.productFragment)
         }
