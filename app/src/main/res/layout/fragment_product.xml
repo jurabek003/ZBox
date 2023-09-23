@@ -33,13 +33,16 @@
             android:scaleType="centerCrop"
             android:src="@drawable/img"/>
     </androidx.cardview.widget.CardView>
-    <LinearLayout
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/product_rv"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        tools:listitem="@layout/item_product_adapter"
         android:orientation="vertical">
 
 
-    </LinearLayout>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>
