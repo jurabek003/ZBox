@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.R
+import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
@@ -18,6 +19,8 @@ import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 class ClientFragment : Fragment() {
     private lateinit var apiServis: ApiServis
+    private lateinit var list: ArrayList<Clients_Get>
+    private lateinit var rvClientAdapter: RvClientAdapter
     private val binding by lazy { FragmentClientBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +45,10 @@ class ClientFragment : Fragment() {
                 response: Response<ArrayList<Clients_Get>>,
             ) {
                 if (response.isSuccessful && response.body()!=null){
-                    binding.tht.text=response.body().toString()
-                    Toast.makeText(requireContext(), "Uraaa", Toast.LENGTH_SHORT).show()
+
+                    list= ArrayList()
+                    list.addAll(response.body()!!)
+                    adapterRv()
                 }
             }
 
@@ -51,5 +56,11 @@ class ClientFragment : Fragment() {
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
+    }
+    private fun adapterRv(){
+        rvClientAdapter=RvClientAdapter(list)
+        binding.rvClient.adapter=rvClientAdapter
+        rvClientAdapter.notifyDataSetChanged()
     }
 }
