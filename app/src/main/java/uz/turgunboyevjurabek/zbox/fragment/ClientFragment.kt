@@ -6,13 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.dialog.MaterialDialogs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
+import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding
+import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
+import uz.turgunboyevjurabek.zbox.madels.Clients_Post
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
@@ -39,6 +44,8 @@ class ClientFragment : Fragment() {
 
     private fun apiWorking() {
         apiServis=ApiClinet.getApiServis(requireContext())
+
+        //api clientlarni hammasini olib kelish uchun
         apiServis.getClients().enqueue(object :Callback<ArrayList<Clients_Get>>{
             override fun onResponse(
                 call: Call<ArrayList<Clients_Get>>,
@@ -56,6 +63,44 @@ class ClientFragment : Fragment() {
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
+        // api ga post qilish uchun
+        binding.btnFloatingClient.setOnClickListener {
+            val itemAddClientBinding=ItemAddClientBinding.inflate(layoutInflater)
+            val dialogPost= MaterialAlertDialogBuilder(requireContext()).create()
+            dialogPost.setView(itemAddClientBinding.root)
+            dialogPost.show()
+
+            itemAddClientBinding.btnSave.setOnClickListener {
+                itemAddClientBinding.apply {
+                    if (!clientName.text.isNullOrEmpty() && !clientLastName.text.isNullOrEmpty() && !clientManzil.text.isNullOrEmpty() && !clientTel.text.isNullOrEmpty() && !clientSumma.text.isNullOrEmpty()){
+                        val clientsPost=Client_Post_Request(clientName.text.toString(),clientLastName.text.toString(),clientManzil.text.toString(),clientTel.text.toString(),clientSumma.text.toString().toInt())
+                        apiServis.postClient(clientsPost).enqueue(object :Callback<ArrayList<Clients_Post>>{
+                            override fun onResponse(
+                                call: Call<ArrayList<Clients_Post>>,
+                                response: Response<ArrayList<Clients_Post>>,
+                            ) {
+                                if (response.isSuccessful && response.body()!=null){
+                                    Toast.makeText(requireContext(), "YEsssssssssssssss", Toast.LENGTH_SHORT).show()
+                                    dialogPost.cancel()
+                                }
+                            }
+
+                            override fun onFailure(
+                                call: Call<ArrayList<Clients_Post>>,
+                                t: Throwable,
+                            ) {
+                                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
+
+                            }
+                        })
+                    }
+                }
+
+            }
+
+        }
+
 
     }
     private fun adapterRv(){
