@@ -26,6 +26,14 @@ class HomeFragment : Fragment() {
 
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
+        binding.btn3.setOnClickListener {
+            val productFragment = ProductFragment()
+
+            val transaction = parentFragmentManager.beginTransaction()
+            transaction.replace(R.id.productFragment, productFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
 
 
 

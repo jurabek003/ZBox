@@ -49,8 +49,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="client"
-                        android:textSize="26sp" />
+                        android:text="Sotuvchi"
+                        android:textSize="20sp" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -64,8 +64,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="client"
-                        android:textSize="26sp" />
+                        android:text="Buyurtma"
+                        android:textSize="20sp" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -79,8 +79,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:gravity="center"
-                        android:text="client"
-                        android:textSize="26sp" />
+                        android:text="Mahsulot"
+                        android:textSize="20sp" />
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
@@ -92,10 +92,10 @@
 
                     <TextView
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:gravity="center"
-                        android:text="client"
-                        android:textSize="26sp" />
+                        android:text="Haridor"
+                        android:textSize="20sp" />
                 </androidx.cardview.widget.CardView>
 
 
