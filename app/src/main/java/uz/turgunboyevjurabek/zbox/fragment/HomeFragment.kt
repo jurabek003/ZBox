@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.GravityCompat
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
+import androidx.navigation.fragment.findNavController
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.databinding.FragmentHomeBinding
 
@@ -26,13 +28,9 @@ class HomeFragment : Fragment() {
 
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
+        findNavController().popBackStack()
         binding.btn3.setOnClickListener {
-            val productFragment = ProductFragment()
-
-            val transaction = parentFragmentManager.beginTransaction()
-            transaction.replace(R.id.productFragment, productFragment)
-            transaction.addToBackStack(null)
-            transaction.commit()
+            findNavController().navigate(R.id.productFragment)
         }
 
 
