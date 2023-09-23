@@ -9,17 +9,17 @@ import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
 import uz.turgunboyevjurabek.zbox.madels.Product
 
 
-class AdapterProduct(val arraylist: ArrayList<Product>): RecyclerView.Adapter<AdapterProduct.vh>() {
+class AdapterProduct(val arraylist: ArrayList<Product>?): RecyclerView.Adapter<AdapterProduct.vh>() {
     inner class vh(val itemRvBinding: ItemProductAdapterBinding):RecyclerView.ViewHolder(itemRvBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): vh {
         return vh(ItemProductAdapterBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }
 
-    override fun getItemCount(): Int = arraylist.size
+    override fun getItemCount(): Int = arraylist!!.size
 
     override fun onBindViewHolder(holder: vh, position: Int) {
-        val list=arraylist[position]
+        val list= arraylist!![position]
         holder.itemRvBinding.tvName.text=list.nom
         holder.itemRvBinding.tvNumber.text=list.narx.toString()
         holder.itemRvBinding.tvId.text=list.id.toString()
