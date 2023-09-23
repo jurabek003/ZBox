@@ -25,11 +25,13 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding.btnDrawer.setOnClickListener {
-
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
         binding.btn3.setOnClickListener {
             findNavController().navigate(R.id.productFragment)
+        }
+        binding.btn4.setOnClickListener {
+            findNavController().navigate(R.id.clientFragment)
         }
 
 
