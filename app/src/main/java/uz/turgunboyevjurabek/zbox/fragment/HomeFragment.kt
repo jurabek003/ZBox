@@ -38,7 +38,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun navigate() {
-        findNavController().popBackStack()
+
         binding.btn3.setOnClickListener {
             findNavController().navigate(R.id.productFragment)
         }
