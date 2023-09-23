@@ -32,7 +32,7 @@ class ProductFragment : Fragment() {
                 response: Response<ArrayList<Product>>
             ) {
                 if (response.isSuccessful){
-                    binding.tvText.text=response.body().toString()
+//                    binding.tvText.text=response.body().toString()
                 }
                 else{
                     Toast.makeText(context, "Yuklashdagi xatolik", Toast.LENGTH_SHORT).show()

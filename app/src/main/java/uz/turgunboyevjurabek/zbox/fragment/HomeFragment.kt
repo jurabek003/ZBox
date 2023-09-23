@@ -25,19 +25,28 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding.btnDrawer.setOnClickListener {
-
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-        findNavController().popBackStack()
-        binding.btn3.setOnClickListener {
-            findNavController().navigate(R.id.productFragment)
-        }
+
+        navigate()
 
 
 
 
         // list finish
         return binding.root
+    }
+
+    private fun navigate() {
+        findNavController().popBackStack()
+        binding.btn3.setOnClickListener {
+            findNavController().navigate(R.id.productFragment)
+        }
+        binding.btn4.setOnClickListener {
+            findNavController().navigate(R.id.clientFragment)
+        }
+
+
     }
 
 }

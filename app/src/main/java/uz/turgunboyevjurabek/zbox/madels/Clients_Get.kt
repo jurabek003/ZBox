@@ -3,7 +3,7 @@ package uz.turgunboyevjurabek.zbox.madels
 
 import com.google.gson.annotations.SerializedName
 
-data class Clients(
+data class Clients_Get(
     @SerializedName("fam")
     val fam: String,
     @SerializedName("id")
