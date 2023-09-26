@@ -29,8 +29,7 @@ class RvClientAdapter(val list: ArrayList<Clients_Get>,val rvClick: RvClick) :
         override fun onBindViewHolder(holder: Vh, position: Int) {
             holder.onBind(list[position],position)
         }
-
+    interface RvClick{
+        fun onClick(clientsGet: Clients_Get,position: Int)
     }
-interface RvClick{
-    fun onClick(clientsGet: Clients_Get,position: Int)
-}
+    }
