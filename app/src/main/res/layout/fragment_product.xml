@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,40 +9,60 @@
     tools:context=".fragment.ProductFragment">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="?actionBarSize"
-        android:background="#0091EA">
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:id="@+id/btn_back"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:src="@drawable/ic_back"
-            />
-    </LinearLayout>
-    <androidx.cardview.widget.CardView
-        android:layout_gravity="center"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:cardElevation="10dp"
-        app:cardCornerRadius="150dp">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerCrop"
-            android:src="@drawable/img"/>
-    </androidx.cardview.widget.CardView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/product_rv"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/item_product_adapter"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:background="#0091EA">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
+                android:src="@drawable/ic_back" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            app:cardCornerRadius="150dp"
+            app:cardElevation="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/img" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/product_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/item_product_adapter" />
+    </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btn_add_product"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/mk_add"
+        android:backgroundTint="#0091EA"
+        android:layout_margin="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 
-    </androidx.recyclerview.widget.RecyclerView>
-
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

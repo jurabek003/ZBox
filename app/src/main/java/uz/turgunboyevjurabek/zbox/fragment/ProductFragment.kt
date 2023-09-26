@@ -16,9 +16,11 @@ import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
 import uz.turgunboyevjurabek.zbox.madels.Product
 
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
+import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 class ProductFragment : Fragment() {
     private lateinit var adapterBinding: ItemProductAdapterBinding
+    private lateinit var  arrayList:ArrayList<Product>
   private val binding by lazy { FragmentProductBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,38 +31,25 @@ class ProductFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View? {
-        context?.let { ApiClinet.getApiServis(it).getProduct().enqueue(object :Callback<ArrayList<Product>>{
+        ApiClinet.getApiServis(requireContext()).getProduct().enqueue(object:Callback<ArrayList<Product>>{
             override fun onResponse(
                 call: Call<ArrayList<Product>>,
                 response: Response<ArrayList<Product>>
-            ) = if (response.isSuccessful){
-                ApiClinet.getApiServis(context!!).getProduct().enqueue(object :Callback<ArrayList<Product>>{
-                    override fun onResponse(
-                        call: Call<ArrayList<Product>>,
-                        response: Response<ArrayList<Product>>
-                    ) {
-                        if (response.isSuccessful){
-                            binding.productRv.adapter=AdapterProduct(response.body())
-                        }
-                    }
+            ) {
+                if (response.isSuccessful) {
+//                    adapterBinding=AdapterProduct(response.body())
+//                    binding.productRv.adapter = adapterBinding
 
-                    override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
-                        TODO("Not yet implemented")
-                    }
-                })
-            }
-            else{
-                Toast.makeText(context, "Yuklashdagi xatolik", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(context, "Yuklashdagi xatolik", Toast.LENGTH_SHORT).show()
+                }
             }
 
             override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
                 Toast.makeText(context, "Ulanishdagi xatolik", Toast.LENGTH_SHORT).show()
             }
 
-        }) }
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
+        })
 
 
 

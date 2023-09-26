@@ -18,7 +18,6 @@ import uz.turgunboyevjurabek.zbox.adapter.RvClick
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding
-
 import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
 import uz.turgunboyevjurabek.zbox.madels.Clients_Post
