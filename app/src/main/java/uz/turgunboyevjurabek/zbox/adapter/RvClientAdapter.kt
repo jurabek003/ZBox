@@ -17,6 +17,7 @@ class RvClientAdapter(val list: ArrayList<Clients_Get>,val rvClick: RvClick) :
                     rvClick.onClick(clientsGet,position)
                 }
                 // murodilllo
+                // vaaaaaaaaaaaaaaaaaay
             }
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Vh {
