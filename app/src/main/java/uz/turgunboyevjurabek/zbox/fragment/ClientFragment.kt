@@ -12,6 +12,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import uz.turgunboyevjurabek.zbox.Objekt.ClientObj
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.adapter.RvClick
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
@@ -113,7 +114,7 @@ class ClientFragment : Fragment(),RvClick {
     }
 
     override fun onClick(clientsGet: Clients_Get, position: Int) {
-
+        ClientObj.id=clientsGet.id
     }
 
 }

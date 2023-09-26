@@ -19,11 +19,13 @@ interface ApiServis {
     @GET("clientlar/")
     fun getClients():Call<ArrayList<Clients_Get>>
 
-
     //Client qo'shish uchun
     @POST("clientlar/")
     fun postClient(@Body clientPostRequest: Client_Post_Request):Call<ArrayList<Clients_Post>>
 
+    //Client id orqli olish
+    @GET("clientlar/{id}/")
+    fun getClientId(@Path("id") id :Int):Call<Clients_Get>
 
     //Mahsulotlarni hammasini olish uchun
     @GET("mahsulotlar/")
@@ -33,7 +35,7 @@ interface ApiServis {
     @GET("sotuvchilar/")
     fun getSellers():Call<ArrayList<getSellers>>
 
-    //sotuchini olish
+    //sotuchini id orqali olish
     @GET("/sotuvchilar/{id}/")
     fun getSeller(@Path("id") id:Int):Call<getSeller>
 }
