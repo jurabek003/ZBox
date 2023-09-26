@@ -16,7 +16,7 @@ class RvClientAdapter(val list: ArrayList<Clients_Get>,val rvClick: RvClick) :
                 itemrv.root.setOnClickListener {
                     rvClick.onClick(clientsGet,position)
                 }
-
+                // murodilllo
             }
         }
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Vh {
