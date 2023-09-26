@@ -22,7 +22,6 @@ class SellerFragment : Fragment() {
     private lateinit var adapterSeller: AdapterSeller
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(
