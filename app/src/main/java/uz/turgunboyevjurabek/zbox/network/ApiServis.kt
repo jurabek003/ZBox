@@ -1,9 +1,13 @@
 package uz.turgunboyevjurabek.zbox.network
 
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.Path
+import uz.turgunboyevjurabek.zbox.Seller.getSeller
+import uz.turgunboyevjurabek.zbox.Seller.getSellers
 import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
 import uz.turgunboyevjurabek.zbox.madels.Clients_Post
@@ -25,4 +29,12 @@ interface ApiServis {
     //Mahsulotlarni hammasini olish uchun
     @GET("mahsulotlar/")
     fun getProduct():Call<ArrayList<Product>>
+
+    //Sotuvchilarni hammasini olish uchun
+    @GET("sotuvchilar/")
+    fun getSellers():Call<ArrayList<getSellers>>
+
+    //sotuchini olish
+    @GET("/sotuvchilar/{id}/")
+    fun getSeller(@Path("id") id:Int):Call<getSeller>
 }

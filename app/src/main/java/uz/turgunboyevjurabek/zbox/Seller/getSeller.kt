@@ -1,7 +1,6 @@
 package uz.turgunboyevjurabek.zbox.Seller
 
-
-data class getSellers(
+data class getSeller(
     val fam: String,
     val id: Int,
     val ism: String,

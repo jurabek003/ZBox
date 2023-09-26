@@ -33,6 +33,9 @@ class HomeFragment : Fragment() {
         binding.btn4.setOnClickListener {
             findNavController().navigate(R.id.clientFragment)
         }
+        binding.btn1.setOnClickListener {
+            findNavController().navigate(R.id.sellerFragment)
+        }
 
 
 
