@@ -43,7 +43,10 @@ class ClientAboutFragment : Fragment() {
             apiServis.getClientId(idNumber).enqueue(object :Callback<Clients_Get>{
                 override fun onResponse(call: Call<Clients_Get>, response: Response<Clients_Get>) {
                     if (response.isSuccessful && response.body()!=null){
-                        Toast.makeText(requireContext(), "Uraaa", Toast.LENGTH_SHORT).show()
+
+                        binding.clientName.text= response.body()!!.ism
+                        binding.clientLastName.text=response.body()!!.fam
+
                     }else{
                         Toast.makeText(requireContext(), "elsga tushdi ", Toast.LENGTH_SHORT).show()
                     }
