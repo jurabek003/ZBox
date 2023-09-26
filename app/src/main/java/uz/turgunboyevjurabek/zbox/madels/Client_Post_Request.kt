@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.zbox.models
+package uz.turgunboyevjurabek.zbox.madels
 
 import com.google.gson.annotations.SerializedName
 

@@ -1,9 +1,9 @@
-package uz.turgunboyevjurabek.zbox.models
+package uz.turgunboyevjurabek.zbox.madels
 
 
 import com.google.gson.annotations.SerializedName
 
-data class Clients_Post(
+data class Clients_Get(
     @SerializedName("fam")
     val fam: String,
     @SerializedName("id")

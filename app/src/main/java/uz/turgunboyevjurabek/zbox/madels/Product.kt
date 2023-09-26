@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.zbox.models
+package uz.turgunboyevjurabek.zbox.madels
 
 data class Product(
     val id: Int,

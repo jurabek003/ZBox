@@ -13,7 +13,7 @@ import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Adapter.AdapterProduct
 import uz.turgunboyevjurabek.zbox.databinding.FragmentProductBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
-import uz.turgunboyevjurabek.zbox.models.Product
+import uz.turgunboyevjurabek.zbox.madels.Product
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 
 class ProductFragment : Fragment() {
