@@ -1,12 +1,10 @@
 package uz.turgunboyevjurabek.zbox.Adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.Recycler
 import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
-import uz.turgunboyevjurabek.zbox.madels.Product
+import uz.turgunboyevjurabek.zbox.models.Product
 
 
 class AdapterProduct(val arraylist: ArrayList<Product>?): RecyclerView.Adapter<AdapterProduct.vh>() {

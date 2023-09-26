@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.turgunboyevjurabek.zbox.Seller.getSellers
 import uz.turgunboyevjurabek.zbox.databinding.ItemSelllerAdapterBinding
-import uz.turgunboyevjurabek.zbox.madels.Product
 
 
 class AdapterSeller(val arraylist: ArrayList<getSellers>?,val rvClick: AdapterSeller.rvAction): RecyclerView.Adapter<AdapterSeller.vh>() {

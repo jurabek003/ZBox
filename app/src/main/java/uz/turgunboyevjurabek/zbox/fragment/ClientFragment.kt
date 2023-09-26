@@ -7,17 +7,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.dialog.MaterialDialogs
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding
-import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
-import uz.turgunboyevjurabek.zbox.madels.Clients_Get
-import uz.turgunboyevjurabek.zbox.madels.Clients_Post
+import uz.turgunboyevjurabek.zbox.models.Client_Post_Request
+import uz.turgunboyevjurabek.zbox.models.Clients_Get
+import uz.turgunboyevjurabek.zbox.models.Clients_Post
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
@@ -74,7 +72,7 @@ class ClientFragment : Fragment() {
             itemAddClientBinding.btnSave.setOnClickListener {
                 itemAddClientBinding.apply {
                     if (!clientName.text.isNullOrEmpty() && !clientLastName.text.isNullOrEmpty() && !clientManzil.text.isNullOrEmpty() && !clientTel.text.isNullOrEmpty() && !clientSumma.text.isNullOrEmpty()){
-                        val clientsPost=Client_Post_Request(clientName.text.toString(),clientLastName.text.toString(),clientManzil.text.toString(),clientTel.text.toString(),clientSumma.text.toString().toInt())
+                        val clientsPost= Client_Post_Request(clientName.text.toString(),clientLastName.text.toString(),clientManzil.text.toString(),clientTel.text.toString(),clientSumma.text.toString().toInt())
                         apiServis.postClient(clientsPost).enqueue(object :Callback<ArrayList<Clients_Post>>{
                             override fun onResponse(
                                 call: Call<ArrayList<Clients_Post>>,
