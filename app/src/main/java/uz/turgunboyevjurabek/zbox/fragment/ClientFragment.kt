@@ -13,7 +13,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Objekt.ClientObj
 import uz.turgunboyevjurabek.zbox.R
-import uz.turgunboyevjurabek.zbox.adapter.RvClick
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding

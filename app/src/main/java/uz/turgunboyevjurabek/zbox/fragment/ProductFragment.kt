@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Adapter.AdapterProduct
+import uz.turgunboyevjurabek.zbox.Objekt.markUser
 import uz.turgunboyevjurabek.zbox.databinding.FragmentProductBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
 import uz.turgunboyevjurabek.zbox.madels.Product
@@ -19,7 +20,7 @@ import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 class ProductFragment : Fragment() {
-    private lateinit var adapterBinding: ItemProductAdapterBinding
+    private lateinit var adapter: AdapterProduct
     private lateinit var  arrayList:ArrayList<Product>
   private val binding by lazy { FragmentProductBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -37,11 +38,18 @@ class ProductFragment : Fragment() {
                 response: Response<ArrayList<Product>>
             ) {
                 if (response.isSuccessful) {
-//                    adapterBinding=AdapterProduct(response.body())
-//                    binding.productRv.adapter = adapterBinding
+                    adapter= AdapterProduct(response.body(),object:AdapterProduct.rvAction{
+                        override fun OnClick(arraylist: ArrayList<Product>, position: Int) {
+                            markUser.id=arraylist[position].id
+
+                        }
+                    })
+                    binding.productRv.adapter=adapter
+
 
                 } else {
                     Toast.makeText(context, "Yuklashdagi xatolik", Toast.LENGTH_SHORT).show()
+
                 }
             }
 
@@ -50,6 +58,10 @@ class ProductFragment : Fragment() {
             }
 
         })
+
+        binding.btnBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
 
 
