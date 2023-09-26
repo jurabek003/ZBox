@@ -24,7 +24,7 @@ import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 
-class ClientFragment : Fragment(),RvClick {
+class ClientFragment : Fragment() {
     private lateinit var apiServis: ApiServis
     private lateinit var list: ArrayList<Clients_Get>
     private lateinit var rvClientAdapter: RvClientAdapter
@@ -106,15 +106,15 @@ class ClientFragment : Fragment(),RvClick {
 
     }
     private fun adapterRv(){
-        rvClientAdapter=RvClientAdapter(list,this)
+        rvClientAdapter=RvClientAdapter(list,object :RvClientAdapter.RvClick{
+            override fun onClick(clientsGet: Clients_Get, position: Int) {
+                ClientObj.id=clientsGet.id
+                findNavController().navigate(R.id.clientAboutFragment)
+            }
+        })
         binding.rvClient.adapter=rvClientAdapter
         rvClientAdapter.notifyDataSetChanged()
     }
 
-    override fun onClick(clientsGet: Clients_Get, position: Int) {
-        ClientObj.id=clientsGet.id
-        findNavController().navigate(R.id.clientAboutFragment)
-
-    }
 
 }
