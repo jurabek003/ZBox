@@ -8,4 +8,8 @@
     <style name="Theme.ZBox" parent="Base.Theme.ZBox" >
         <item name="colorPrimary">@color/asosiy</item>
     </style>
+    <style name="for_image_radius" parent="">
+        <item name="cornerSizeBottomLeft">50dp</item>
+        <item name="cornerSizeBottomRight">50dp</item>
+    </style>
 </resources>

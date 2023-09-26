@@ -27,7 +27,11 @@
         android:id="@+id/clientFragment"
         android:name="uz.turgunboyevjurabek.zbox.fragment.ClientFragment"
         android:label="fragment_client"
-        tools:layout="@layout/fragment_client" />
+        tools:layout="@layout/fragment_client" >
+        <action
+            android:id="@+id/action_clientFragment_to_clientAboutFragment"
+            app:destination="@id/clientAboutFragment" />
+    </fragment>
     <fragment
         android:id="@+id/productFragment"
         android:name="uz.turgunboyevjurabek.zbox.fragment.ProductFragment"
@@ -52,4 +56,9 @@
         android:name="uz.turgunboyevjurabek.zbox.fragment.SellerAboutFragment"
         android:label="fragment_seller_about"
         tools:layout="@layout/fragment_seller_about" />
+    <fragment
+        android:id="@+id/clientAboutFragment"
+        android:name="uz.turgunboyevjurabek.zbox.fragment.ClientAboutFragment"
+        android:label="fragment_client_about"
+        tools:layout="@layout/fragment_client_about" />
 </navigation>

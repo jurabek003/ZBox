@@ -6,13 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import uz.turgunboyevjurabek.zbox.R
+import uz.turgunboyevjurabek.zbox.adapter.RvClick
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding
+
 import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
 import uz.turgunboyevjurabek.zbox.madels.Clients_Post
@@ -20,7 +25,7 @@ import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 
-class ClientFragment : Fragment() {
+class ClientFragment : Fragment(),RvClick {
     private lateinit var apiServis: ApiServis
     private lateinit var list: ArrayList<Clients_Get>
     private lateinit var rvClientAdapter: RvClientAdapter
@@ -64,7 +69,7 @@ class ClientFragment : Fragment() {
 
         // api ga post qilish uchun
         binding.btnFloatingClient.setOnClickListener {
-            val itemAddClientBinding=ItemAddClientBinding.inflate(layoutInflater)
+            val itemAddClientBinding= ItemAddClientBinding.inflate(layoutInflater)
             val dialogPost= MaterialAlertDialogBuilder(requireContext()).create()
             dialogPost.setView(itemAddClientBinding.root)
             dialogPost.show()
@@ -102,8 +107,13 @@ class ClientFragment : Fragment() {
 
     }
     private fun adapterRv(){
-        rvClientAdapter=RvClientAdapter(list)
+        rvClientAdapter=RvClientAdapter(list,this)
         binding.rvClient.adapter=rvClientAdapter
         rvClientAdapter.notifyDataSetChanged()
     }
+
+    override fun onClick(clientsGet: Clients_Get, position: Int) {
+
+    }
+
 }

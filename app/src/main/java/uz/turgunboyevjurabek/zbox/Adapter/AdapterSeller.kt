@@ -7,6 +7,7 @@ import uz.turgunboyevjurabek.zbox.Seller.getSellers
 import uz.turgunboyevjurabek.zbox.databinding.ItemSelllerAdapterBinding
 
 
+
 class AdapterSeller(val arraylist: ArrayList<getSellers>?,val rvClick: AdapterSeller.rvAction): RecyclerView.Adapter<AdapterSeller.vh>() {
     inner class vh(val itemRvBinding: ItemSelllerAdapterBinding):RecyclerView.ViewHolder(itemRvBinding.root)
 

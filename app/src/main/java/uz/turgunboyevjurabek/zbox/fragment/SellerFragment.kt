@@ -1,6 +1,5 @@
 package uz.turgunboyevjurabek.zbox.fragment
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,10 +13,8 @@ import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Adapter.AdapterSeller
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.Seller.getSellers
-import uz.turgunboyevjurabek.zbox.databinding.ActivityMainBinding
 import uz.turgunboyevjurabek.zbox.databinding.FragmentSellerBinding
-import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
-import uz.turgunboyevjurabek.zbox.markUser
+import uz.turgunboyevjurabek.zbox.Objekt.markUser
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 
 class SellerFragment : Fragment() {

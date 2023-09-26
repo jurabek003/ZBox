@@ -10,11 +10,9 @@ import androidx.navigation.fragment.findNavController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.Seller.getSeller
-import uz.turgunboyevjurabek.zbox.Seller.getSellers
 import uz.turgunboyevjurabek.zbox.databinding.FragmentSellerAboutBinding
-import uz.turgunboyevjurabek.zbox.markUser
+import uz.turgunboyevjurabek.zbox.Objekt.markUser
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 
 
