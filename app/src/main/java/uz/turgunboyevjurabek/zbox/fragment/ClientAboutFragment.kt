@@ -14,6 +14,7 @@ import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientAboutBinding
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
+import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 class ClientAboutFragment : Fragment() {
@@ -37,6 +38,8 @@ class ClientAboutFragment : Fragment() {
     private fun apiWorking() {
         val idNumber = ClientObj.id
         if (idNumber != null) {
+
+            apiServis=ApiClinet.getApiServis(requireContext())
             apiServis.getClientId(idNumber).enqueue(object :Callback<Clients_Get>{
                 override fun onResponse(call: Call<Clients_Get>, response: Response<Clients_Get>) {
                     if (response.isSuccessful && response.body()!=null){
