@@ -1,6 +1,7 @@
 package uz.turgunboyevjurabek.zbox.fragment
 
 import android.Manifest
+import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.github.florent37.runtimepermission.kotlin.askPermission
+import com.github.florent37.runtimepermission.kotlin.coroutines.experimental.askPermission
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
@@ -113,13 +115,21 @@ if (e.hasDenied()){
 
             askPermission(android.Manifest.permission.SEND_SMS) {
                 try {
-                    var matn = smsSendDialogBinding.edtMassage.text.toString()
-                    var obj = SmsManager.getDefault()
+                    val matn = smsSendDialogBinding.edtMassage.text
+                    val obj = SmsManager.getDefault()
                     smsSendDialogBinding.btnSend.setOnClickListener {
-                        obj.sendTextMessage(phoneNumber, null, matn, null, null)
+                        // SMS jo'natish uchun PendingIntent tuziladi
+                       // val sentPendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_SENT"), PendingIntent.FLAG_IMMUTABLE)
+
+                        // SMS jo'natish uchun PendingIntent tuziladi
+                        //val deliveredPendingIntent = PendingIntent.getBroadcast(requireContext(), 0, Intent("SMS_DELIVERED"), PendingIntent.FLAG_IMMUTABLE)
+
+                        obj.sendTextMessage(phoneNumber, null, matn.toString(), null,null)
+
                         Toast.makeText(requireContext(), "Send Message 📤 ", Toast.LENGTH_SHORT)
                             .show()
                         dialog.cancel()
+
                     }
 
                 } catch (e: UninitializedPropertyAccessException) {

@@ -3,17 +3,18 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="20dp"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <EditText
         android:id="@+id/edt_massage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="25dp"
         android:gravity="start"
         android:hint="Massage"
         android:textColor="@color/asosiy"
         android:fontFamily="serif"
+
         android:paddingVertical="10dp"
         android:background="@drawable/sms_dialog_shape"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,10 +32,11 @@
         app:iconTint="@color/asosiy"
         app:iconGravity="textEnd"
         app:iconSize="25dp"
+
         app:layout_constraintBottom_toBottomOf="@+id/edt_massage"
         app:layout_constraintStart_toEndOf="@+id/edt_massage"
         app:layout_constraintTop_toTopOf="@+id/edt_massage"
-        android:layout_marginStart="10dp" />
+        android:layout_marginStart="5dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
