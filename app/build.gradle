@@ -48,9 +48,12 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
     // retrofit
         implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-
     // gson
         implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    // for permission
+    implementation 'com.github.florent37:runtime-permission-kotlin:1.1.2'
+    // for circleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
         // agar gredle hatolik bersa kerak bo'ladi
         // android.enableJetifier=true

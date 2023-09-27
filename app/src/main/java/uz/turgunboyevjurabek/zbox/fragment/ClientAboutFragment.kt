@@ -1,11 +1,18 @@
 package uz.turgunboyevjurabek.zbox.fragment
 
+import android.Manifest
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.telephony.SmsManager
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import com.github.florent37.runtimepermission.kotlin.askPermission
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,6 +20,7 @@ import uz.turgunboyevjurabek.zbox.Objekt.ClientObj
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientAboutBinding
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
+import uz.turgunboyevjurabek.zbox.databinding.SmsSendDialogBinding
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
@@ -20,7 +28,7 @@ import uz.turgunboyevjurabek.zbox.network.ApiServis
 class ClientAboutFragment : Fragment() {
     private  val binding by lazy { FragmentClientAboutBinding.inflate(layoutInflater) }
     private lateinit var apiServis: ApiServis
-
+    private lateinit var phoneNumber:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -33,7 +41,11 @@ class ClientAboutFragment : Fragment() {
         // Inflate the layout for this fragment
 
         apiWorking()
-        calling()
+        binding.cardCall.setOnClickListener {
+            calling()
+        }
+        sendSms()
+
         return binding.root
     }
     private fun apiWorking() {
@@ -47,6 +59,8 @@ class ClientAboutFragment : Fragment() {
 
                         binding.clientName.text= response.body()!!.ism
                         binding.clientLastName.text=response.body()!!.fam
+                        phoneNumber=response.body()!!.tel
+                        Toast.makeText(requireContext(), response.body()!!.tel, Toast.LENGTH_SHORT).show()
 
                     }else{
                         Toast.makeText(requireContext(), "elsga tushdi ", Toast.LENGTH_SHORT).show()
@@ -61,6 +75,75 @@ class ClientAboutFragment : Fragment() {
         }
     }
     private fun calling() {
-        val phoneNumber=ClientObj
+        askPermission(Manifest.permission.CALL_PHONE){
+            try {
+                val intent=(Intent(Intent.ACTION_CALL))
+                intent.data= Uri.parse("tel:$phoneNumber")
+                startActivity(intent)
+            }catch (e:UninitializedPropertyAccessException){
+                Toast.makeText(requireContext(),"Yuklanmoqda...",Toast.LENGTH_SHORT).show()
+            }
+
+        }.onDeclined {e->
+if (e.hasDenied()){
+    AlertDialog.Builder(requireContext())
+        .setMessage("Ruxsat bermasangiz ilova ishlay olmaydi ruxsat bering...")
+        .setPositiveButton("yes") { dialog, which ->
+            e.askAgain();
+        } //ask again
+        .setNegativeButton("no") { dialog, which ->
+            dialog.dismiss();
+        }
+        .show();
+}
+            // nastroykani ochish uchun
+            if(e.hasForeverDenied()) {
+                e.goToSettings();
+            }
+
+        }
+
+    }
+    private fun sendSms(){
+        binding.cardSms.setOnClickListener {
+            val smsSendDialogBinding = SmsSendDialogBinding.inflate(layoutInflater)
+            val dialog = BottomSheetDialog(requireContext())
+            dialog.setContentView(smsSendDialogBinding.root)
+            dialog.show()
+
+            askPermission(android.Manifest.permission.SEND_SMS) {
+                try {
+                    var matn = smsSendDialogBinding.edtMassage.text.toString()
+                    var obj = SmsManager.getDefault()
+                    smsSendDialogBinding.btnSend.setOnClickListener {
+                        obj.sendTextMessage(phoneNumber, null, matn, null, null)
+                        Toast.makeText(requireContext(), "Send Message 📤 ", Toast.LENGTH_SHORT)
+                            .show()
+                        dialog.cancel()
+                    }
+
+                } catch (e: UninitializedPropertyAccessException) {
+                    Toast.makeText(requireContext(), "Yuklanmoqda...", Toast.LENGTH_SHORT).show()
+                }
+
+            }.onDeclined { e ->
+                if (e.hasDenied()) {
+                    AlertDialog.Builder(requireContext())
+                        .setMessage("Ruxsat bermasangiz ilova ishlay olmaydi ruxsat bering 🤫...")
+                        .setPositiveButton("yes 😉") { dialog, which ->
+                            e.askAgain();
+                        } //ask again
+                        .setNegativeButton("no 😡") { dialog, which ->
+                            dialog.dismiss();
+                        }
+                        .show();
+                }
+                if (e.hasForeverDenied()) {
+                    e.goToSettings();
+                }
+
+            }
+        }
+
     }
 }

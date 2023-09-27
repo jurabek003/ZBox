@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.zbox.Adapter
+package uz.turgunboyevjurabek.zbox.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.turgunboyevjurabek.zbox.Seller.getSellers
 import uz.turgunboyevjurabek.zbox.databinding.ItemSelllerAdapterBinding
 
-class AdapterSeller(val arraylist: ArrayList<getSellers>?,val rvClick: AdapterSeller.rvAction): RecyclerView.Adapter<AdapterSeller.vh>() {
+class AdapterSeller(val arraylist: ArrayList<getSellers>?,val rvClick: RvAction): RecyclerView.Adapter<AdapterSeller.vh>() {
     inner class vh(val itemRvBinding: ItemSelllerAdapterBinding):RecyclerView.ViewHolder(itemRvBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): vh {
@@ -24,7 +24,7 @@ class AdapterSeller(val arraylist: ArrayList<getSellers>?,val rvClick: AdapterSe
 
 
     override fun getItemCount(): Int = arraylist!!.size
-    interface rvAction{
+    interface RvAction{
         fun OnClick(arraylist: ArrayList<getSellers> ,position: Int)
     }
 }

@@ -10,7 +10,7 @@ import androidx.navigation.fragment.findNavController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uz.turgunboyevjurabek.zbox.Adapter.AdapterSeller
+import uz.turgunboyevjurabek.zbox.adapter.AdapterSeller
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.Seller.getSellers
 import uz.turgunboyevjurabek.zbox.databinding.FragmentSellerBinding
@@ -36,7 +36,7 @@ class SellerFragment : Fragment() {
                 ) {
                     if (response.isSuccessful) {
                         adapterSeller =
-                            AdapterSeller(response.body(), object : AdapterSeller.rvAction {
+                            AdapterSeller(response.body(), object : AdapterSeller.RvAction {
                                 override fun OnClick(
                                     arraylist: ArrayList<getSellers>,
                                     position: Int
