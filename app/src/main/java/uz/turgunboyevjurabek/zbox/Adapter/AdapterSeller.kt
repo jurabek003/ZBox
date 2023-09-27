@@ -20,14 +20,11 @@ class AdapterSeller(val arraylist: ArrayList<getSellers>?,val rvClick: AdapterSe
         holder.itemRvBinding.btnSellerAbout.setOnClickListener {
             rvClick.OnClick(arraylist,position)
         }
-
     }
 
 
     override fun getItemCount(): Int = arraylist!!.size
-
     interface rvAction{
         fun OnClick(arraylist: ArrayList<getSellers> ,position: Int)
     }
-
 }

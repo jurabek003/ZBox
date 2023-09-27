@@ -13,7 +13,6 @@ import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Objekt.ClientObj
 import uz.turgunboyevjurabek.zbox.R
-import uz.turgunboyevjurabek.zbox.adapter.RvClick
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding
@@ -65,6 +64,7 @@ class ClientFragment : Fragment() {
                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
             }
         })
+
 
         // api ga post qilish uchun
         binding.btnFloatingClient.setOnClickListener {
