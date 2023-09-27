@@ -31,6 +31,8 @@ class ClientAboutFragment : Fragment() {
     private  val binding by lazy { FragmentClientAboutBinding.inflate(layoutInflater) }
     private lateinit var apiServis: ApiServis
     private lateinit var phoneNumber:String
+    private lateinit var name:String
+    private lateinit var lastName:String
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -62,6 +64,8 @@ class ClientAboutFragment : Fragment() {
                         binding.clientName.text= response.body()!!.ism
                         binding.clientLastName.text=response.body()!!.fam
                         phoneNumber=response.body()!!.tel
+                        name= response.body()!!.ism
+                        lastName=response.body()!!.fam
                         Toast.makeText(requireContext(), response.body()!!.tel, Toast.LENGTH_SHORT).show()
 
                     }else{
@@ -111,6 +115,15 @@ if (e.hasDenied()){
             val smsSendDialogBinding = SmsSendDialogBinding.inflate(layoutInflater)
             val dialog = BottomSheetDialog(requireContext())
             dialog.setContentView(smsSendDialogBinding.root)
+            try {
+                smsSendDialogBinding.smsClientName.text=name.toString()
+                smsSendDialogBinding.smsClientLastName.text=lastName.toString()
+            }catch (e: UninitializedPropertyAccessException){
+                Toast.makeText(requireContext(), "Yuklanmoqda...", Toast.LENGTH_SHORT).show()
+            }
+
+
+
             dialog.show()
 
             askPermission(android.Manifest.permission.SEND_SMS) {
