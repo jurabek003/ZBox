@@ -8,8 +8,6 @@
     android:orientation="vertical"
     tools:context=".fragment.ClientAboutFragment">
 
-    <!-- TODO: Update| blank fragment layout -->
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/clinet_img"
         android:layout_width="match_parent"
@@ -30,6 +28,7 @@
         android:layout_marginHorizontal="15dp"
         app:cardCornerRadius="30dp"
         app:strokeWidth="0dp"
+        android:layout_marginBottom="10dp"
         app:cardElevation="15dp">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -46,9 +45,10 @@
                 android:fontFamily="serif"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
+                android:layout_marginStart="10dp"
                 app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/client_last_name"
                 app:layout_goneMarginTop="10dp"
-                android:layout_marginStart="100dp"
                 app:layout_constraintTop_toTopOf="parent"/>
             <TextView
                 android:id="@+id/client_last_name"
@@ -59,12 +59,55 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:fontFamily="serif"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="10dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/client_name"
                 app:layout_goneMarginTop="10dp"
-                android:layout_marginEnd="100dp"
                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_call"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_margin="65dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                app:layout_constraintStart_toStartOf="parent"
+                app:strokeWidth="0dp"
+                app:cardElevation="1.5dp"
+                app:cardCornerRadius="33dp"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_calll"
+                    android:scaleType="centerInside"/>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_sms"
+                android:layout_width="65dp"
+                android:layout_height="65dp"
+                android:layout_margin="65dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?selectableItemBackground"
+                app:strokeWidth="0dp"
+                app:cardElevation="1.5dp"
+                app:cardCornerRadius="33dp"
+            app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_massage"
+                    android:scaleType="centerInside"/>
+            </com.google.android.material.card.MaterialCardView>
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 

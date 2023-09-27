@@ -20,6 +20,7 @@ import uz.turgunboyevjurabek.zbox.network.ApiServis
 class ClientAboutFragment : Fragment() {
     private  val binding by lazy { FragmentClientAboutBinding.inflate(layoutInflater) }
     private lateinit var apiServis: ApiServis
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -32,9 +33,9 @@ class ClientAboutFragment : Fragment() {
         // Inflate the layout for this fragment
 
         apiWorking()
+        calling()
         return binding.root
     }
-
     private fun apiWorking() {
         val idNumber = ClientObj.id
         if (idNumber != null) {
@@ -58,5 +59,8 @@ class ClientAboutFragment : Fragment() {
                 }
             })
         }
+    }
+    private fun calling() {
+        val phoneNumber=ClientObj
     }
 }
