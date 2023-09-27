@@ -121,9 +121,6 @@ if (e.hasDenied()){
             }catch (e: UninitializedPropertyAccessException){
                 Toast.makeText(requireContext(), "Yuklanmoqda...", Toast.LENGTH_SHORT).show()
             }
-
-
-
             dialog.show()
 
             askPermission(android.Manifest.permission.SEND_SMS) {

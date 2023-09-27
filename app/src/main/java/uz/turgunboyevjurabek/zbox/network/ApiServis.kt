@@ -10,6 +10,7 @@ import uz.turgunboyevjurabek.zbox.Seller.getSellers
 import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
 import uz.turgunboyevjurabek.zbox.madels.Clients_Get
 import uz.turgunboyevjurabek.zbox.madels.Clients_Post
+import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
 import uz.turgunboyevjurabek.zbox.madels.Product
 
 interface ApiServis {
@@ -38,4 +39,9 @@ interface ApiServis {
     //sotuchini id orqali olish
     @GET("/sotuvchilar/{id}/")
     fun getSeller(@Path("id") id:Int):Call<getSeller>
+
+    // buyurtmalarni hammasini apidan olib kelish
+    @GET("buyurtmalar/")
+    fun getOrders():Call<ArrayList<Order_get>>
+
 }
