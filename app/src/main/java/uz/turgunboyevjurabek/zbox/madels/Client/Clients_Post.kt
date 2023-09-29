@@ -1,12 +1,15 @@
-package uz.turgunboyevjurabek.zbox.madels
+package uz.turgunboyevjurabek.zbox.madels.Client
+
 
 import com.google.gson.annotations.SerializedName
 
-data class Client_Post_Request (
-    @SerializedName("ism")
-    val ism: String,
+data class Clients_Post(
     @SerializedName("fam")
     val fam: String,
+    @SerializedName("id")
+    val id: Int,
+    @SerializedName("ism")
+    val ism: String,
     @SerializedName("manzil")
     val manzil: String,
     @SerializedName("tel")

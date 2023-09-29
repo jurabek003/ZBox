@@ -16,9 +16,9 @@ import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.adapter.RvClientAdapter
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.databinding.ItemAddClientBinding
-import uz.turgunboyevjurabek.zbox.madels.Client_Post_Request
-import uz.turgunboyevjurabek.zbox.madels.Clients_Get
-import uz.turgunboyevjurabek.zbox.madels.Clients_Post
+import uz.turgunboyevjurabek.zbox.madels.Client.Client_Post_Request
+import uz.turgunboyevjurabek.zbox.madels.Client.Clients_Get
+import uz.turgunboyevjurabek.zbox.madels.Client.Clients_Post
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 

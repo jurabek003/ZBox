@@ -35,40 +35,36 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:gravity="center"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/client_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="serif"
+                    android:text="name"
+                    android:layout_marginEnd="5dp"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+             />
 
-            <TextView
-                android:id="@+id/client_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="serif"
-                android:text="name"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/client_last_name"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_goneMarginTop="10dp" />
-
-            <TextView
-                android:id="@+id/client_last_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:fontFamily="serif"
-                android:text="name"
-                android:textColor="@color/black"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/client_name"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_goneMarginTop="10dp" />
+                <TextView
+                    android:id="@+id/client_last_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="serif"
+                    android:layout_marginStart="5dp"
+                    android:text="name"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+            </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_call"
@@ -88,6 +84,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerInside"
+                    android:background="@color/white"
                     android:src="@drawable/ic_calll" />
             </com.google.android.material.card.MaterialCardView>
 
@@ -109,10 +106,133 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerInside"
+                    android:background="@color/white"
                     android:src="@drawable/ic_massage" />
             </com.google.android.material.card.MaterialCardView>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/card_call"
+                android:orientation="horizontal">
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_address"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="20dp"
+                    android:foreground="?selectableItemBackground"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2.5dp"
+                    android:backgroundTint="@color/white"
+                    app:strokeWidth="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_home"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:id="@+id/card_client_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="false"
+                            android:text="mazil"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="serif"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_summa"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:clickable="true"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="20dp"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2.5dp"
+                    android:backgroundTint="@color/white"
+                    app:strokeWidth="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_moniey"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:id="@+id/card_client_summa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="false"
+                            android:text="qarzi"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="serif"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/card_birbalo"
+                    android:layout_width="75dp"
+                    android:layout_height="75dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="20dp"
+                    app:cardElevation="2.5dp"
+                    android:backgroundTint="@color/white"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:src="@drawable/ic_home"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="false"
+                            android:text="mazil"
+                            android:textSize="15sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="serif"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"/>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </com.google.android.material.card.MaterialCardView>
 

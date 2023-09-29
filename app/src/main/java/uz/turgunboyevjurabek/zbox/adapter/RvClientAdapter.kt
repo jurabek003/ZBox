@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import uz.turgunboyevjurabek.zbox.databinding.ItemRvClientBinding
-import uz.turgunboyevjurabek.zbox.madels.Clients_Get
+import uz.turgunboyevjurabek.zbox.madels.Client.Clients_Get
 
-class RvClientAdapter(val list: ArrayList<Clients_Get>,val rvClick: RvClick) :
+class RvClientAdapter(val list: ArrayList<Clients_Get>, val rvClick: RvClick) :
         RecyclerView.Adapter<RvClientAdapter.Vh>() {
         inner class Vh(val itemrv: ItemRvClientBinding) : RecyclerView.ViewHolder(itemrv.root) {
-            fun onBind(clientsGet: Clients_Get,position: Int) {
+            fun onBind(clientsGet: Clients_Get, position: Int) {
                 itemrv.itemName.text=clientsGet.ism
                 itemrv.itemLastName.text=clientsGet.fam
 
@@ -30,6 +30,6 @@ class RvClientAdapter(val list: ArrayList<Clients_Get>,val rvClick: RvClick) :
             holder.onBind(list[position],position)
         }
     interface RvClick{
-        fun onClick(clientsGet: Clients_Get,position: Int)
+        fun onClick(clientsGet: Clients_Get, position: Int)
     }
     }

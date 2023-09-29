@@ -10,6 +10,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.R
+import uz.turgunboyevjurabek.zbox.adapter.RvAdapterOrder
 import uz.turgunboyevjurabek.zbox.databinding.FragmentOrderBinding
 import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
@@ -18,6 +19,7 @@ import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 class OrderFragment : Fragment() {
     private lateinit var apiServis: ApiServis
+    private lateinit var rvAdapterOrder: RvAdapterOrder
     private val binding by lazy { FragmentOrderBinding.inflate(layoutInflater)}
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +39,7 @@ class OrderFragment : Fragment() {
                 response: Response<ArrayList<Order_get>>,
             ) {
                 if (response.isSuccessful && response.body()!= null){
-                    Toast.makeText(requireContext(), "Keldi ura", Toast.LENGTH_SHORT).show()
+                    insertRv()
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
                 }
@@ -49,6 +51,9 @@ class OrderFragment : Fragment() {
             }
 
         })
+    }
+    private fun insertRv(){
+
     }
 
 }

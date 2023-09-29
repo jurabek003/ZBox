@@ -1,7 +1,6 @@
 package uz.turgunboyevjurabek.zbox.fragment
 
 import android.Manifest
-import android.app.PendingIntent
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -13,17 +12,14 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.github.florent37.runtimepermission.kotlin.askPermission
-import com.github.florent37.runtimepermission.kotlin.coroutines.experimental.askPermission
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Objekt.ClientObj
-import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.databinding.FragmentClientAboutBinding
-import uz.turgunboyevjurabek.zbox.databinding.FragmentClientBinding
 import uz.turgunboyevjurabek.zbox.databinding.SmsSendDialogBinding
-import uz.turgunboyevjurabek.zbox.madels.Clients_Get
+import uz.turgunboyevjurabek.zbox.madels.Client.Clients_Get
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
@@ -33,6 +29,7 @@ class ClientAboutFragment : Fragment() {
     private lateinit var phoneNumber:String
     private lateinit var name:String
     private lateinit var lastName:String
+    private lateinit var list: ArrayList<Clients_Get>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -60,12 +57,15 @@ class ClientAboutFragment : Fragment() {
             apiServis.getClientId(idNumber).enqueue(object :Callback<Clients_Get>{
                 override fun onResponse(call: Call<Clients_Get>, response: Response<Clients_Get>) {
                     if (response.isSuccessful && response.body()!=null){
-
                         binding.clientName.text= response.body()!!.ism
                         binding.clientLastName.text=response.body()!!.fam
+                        binding.cardClientAddress.text=response.body()!!.manzil
+                        binding.cardClientSumma.text= "${response.body()!!.umumiySumma.toString()} so'm"
+
                         phoneNumber=response.body()!!.tel
                         name= response.body()!!.ism
                         lastName=response.body()!!.fam
+
                         Toast.makeText(requireContext(), response.body()!!.tel, Toast.LENGTH_SHORT).show()
 
                     }else{
