@@ -32,6 +32,10 @@ interface ApiServis {
     @GET("mahsulotlar/")
     fun getProduct():Call<ArrayList<Product>>
 
+    //  Maxsulot id orqali olish
+    @GET("mahsulotlar/{id}/clientlar/")
+    fun getProductId(@Path("id") id :Int):Call<ArrayList<Product>>
+
     //Sotuvchilarni hammasini olish uchun
     @GET("sotuvchilar/")
     fun getSellers():Call<ArrayList<getSellers>>

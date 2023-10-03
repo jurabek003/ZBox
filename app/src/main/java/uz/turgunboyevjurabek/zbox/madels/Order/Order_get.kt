@@ -22,4 +22,5 @@ data class Order_get(
     val summa: Int,
     @SerializedName("tolangan_summa")
     val tolanganSumma: Int
+
 )

@@ -12,7 +12,9 @@ import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.adapter.RvAdapterOrder
 import uz.turgunboyevjurabek.zbox.databinding.FragmentOrderBinding
+import uz.turgunboyevjurabek.zbox.madels.Order.OrderForRv
 import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
+import uz.turgunboyevjurabek.zbox.madels.Product
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
@@ -20,7 +22,11 @@ import uz.turgunboyevjurabek.zbox.network.ApiServis
 class OrderFragment : Fragment() {
     private lateinit var apiServis: ApiServis
     private lateinit var rvAdapterOrder: RvAdapterOrder
+    private lateinit var list:ArrayList<Order_get>
+    private lateinit var list_rv:ArrayList<Product>
+    private var ID:Int?=null
     private val binding by lazy { FragmentOrderBinding.inflate(layoutInflater)}
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -39,11 +45,18 @@ class OrderFragment : Fragment() {
                 response: Response<ArrayList<Order_get>>,
             ) {
                 if (response.isSuccessful && response.body()!= null){
-                    insertRv()
+                    list = ArrayList()
+                    list_rv= ArrayList()
+                    list.addAll(response.body()!!)
+
+                    for (i in 0 until  list.size){
+                        getProductID(list[i].mahsulot)
+                    }
+
+
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
                 }
-
             }
 
             override fun onFailure(call: Call<ArrayList<Order_get>>, t: Throwable) {
@@ -52,8 +65,23 @@ class OrderFragment : Fragment() {
 
         })
     }
-    private fun insertRv(){
 
+    private fun getProductID(id:Int){
+        apiServis=ApiClinet.getApiServis(requireContext())
+        apiServis.getProductId(id).enqueue(object :Callback<ArrayList<Product>>{
+            override fun onResponse(
+                call: Call<ArrayList<Product>>,
+                response: Response<ArrayList<Product>>,
+            ) {
+                list_rv.addAll(response.body()!!)
+                rvAdapterOrder = RvAdapterOrder(list_rv,list)
+                binding.rvOrder.adapter=rvAdapterOrder
+                rvAdapterOrder.notifyDataSetChanged()
+            }
+
+            override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
+
+            }
+        })
     }
-
 }
