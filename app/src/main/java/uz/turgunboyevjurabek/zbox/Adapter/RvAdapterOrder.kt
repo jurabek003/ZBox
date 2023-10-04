@@ -7,10 +7,13 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import uz.turgunboyevjurabek.zbox.databinding.ItemOrderRvBinding
 import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
 
-class RvAdapterOrder(val list:ArrayList<Order_get>):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
+import uz.turgunboyevjurabek.zbox.madels.Product
+
+class RvAdapterOrder(val list:ArrayList<Product>, val list2:ArrayList<Order_get>):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
     inner class Vh(val itemOrderRvBinding: ItemOrderRvBinding):ViewHolder(itemOrderRvBinding.root){
-        fun onBind(orderGet: Order_get){
-            itemOrderRvBinding.itemOrderName.text= orderGet.mahsulot.toString()
+        fun onBind(order_get: Order_get,product: Product){
+            itemOrderRvBinding.itemOrderName.text= product.nom.toString()
+
         }
     }
 
@@ -21,6 +24,6 @@ class RvAdapterOrder(val list:ArrayList<Order_get>):RecyclerView.Adapter<RvAdapt
     override fun getItemCount(): Int =list.size
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.onBind(list[position])
+        holder.onBind(list2[position],list[position])
     }
 }

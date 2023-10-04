@@ -1,6 +1,8 @@
 package uz.turgunboyevjurabek.zbox.fragment
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -49,13 +51,16 @@ class OrderFragment : Fragment() {
                     list_rv= ArrayList()
                     list.addAll(response.body()!!)
 
-                    for (i in 0 until  list.size){
+                    for (i in  0 until list.size){
                         getProductID(list[i].mahsulot)
                     }
-
+                    rvAdapterOrder = RvAdapterOrder(list_rv,list)
+                    binding.rvOrder.adapter=rvAdapterOrder
+                    rvAdapterOrder.notifyDataSetChanged()
 
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), response.message(), Toast.LENGTH_LONG).show()
                 }
             }
 
@@ -73,10 +78,8 @@ class OrderFragment : Fragment() {
                 call: Call<ArrayList<Product>>,
                 response: Response<ArrayList<Product>>,
             ) {
+                Toast.makeText(requireContext(), "getProductID", Toast.LENGTH_SHORT).show()
                 list_rv.addAll(response.body()!!)
-                rvAdapterOrder = RvAdapterOrder(list_rv,list)
-                binding.rvOrder.adapter=rvAdapterOrder
-                rvAdapterOrder.notifyDataSetChanged()
             }
 
             override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
