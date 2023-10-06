@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClinet {
 
-    const val BASE_URl="http://apiombor.pythonanywhere.com/"
+    const val BASE_URl="https://omborapi11.pythonanywhere.com/"
 
     fun getRetrofit(): Retrofit{
         return Retrofit.Builder()
