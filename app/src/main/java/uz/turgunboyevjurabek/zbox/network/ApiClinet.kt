@@ -5,7 +5,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object ApiClinet {
-
+    // ipi yangilangandan keyingi holat
     const val BASE_URl="https://omborapi11.pythonanywhere.com/"
 
     fun getRetrofit(): Retrofit{
