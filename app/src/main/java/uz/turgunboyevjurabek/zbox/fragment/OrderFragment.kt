@@ -19,14 +19,17 @@ import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
 import uz.turgunboyevjurabek.zbox.madels.Product
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
+import java.util.Arrays
 
 
 class OrderFragment : Fragment() {
     private lateinit var apiServis: ApiServis
     private lateinit var rvAdapterOrder: RvAdapterOrder
-    private lateinit var list:ArrayList<Order_get>
-    private lateinit var list_rv:ArrayList<Product>
+     lateinit var list:ArrayList<Order_get>
+     lateinit var list_rv:ArrayList<Int>
+     lateinit var list_product:ArrayList<Product>
     private var ID:Int?=null
+
     private val binding by lazy { FragmentOrderBinding.inflate(layoutInflater)}
 
     override fun onCreateView(
@@ -41,6 +44,7 @@ class OrderFragment : Fragment() {
 
     private fun ordersGetFromApi() {
         apiServis=ApiClinet.getApiServis(requireContext())
+        list_rv= ArrayList()
         apiServis.getOrders().enqueue(object :Callback<ArrayList<Order_get>>{
             override fun onResponse(
                 call: Call<ArrayList<Order_get>>,
@@ -48,16 +52,27 @@ class OrderFragment : Fragment() {
             ) {
                 if (response.isSuccessful && response.body()!= null){
                     list = ArrayList()
-                    list_rv= ArrayList()
                     list.addAll(response.body()!!)
-
-                    for (i in  0 until list.size){
-                        getProductID(list[i].mahsulot)
+                    for (i in 0 until list.size){
+                        list_rv.add(list[i].mahsulot)
                     }
-                    rvAdapterOrder = RvAdapterOrder(list_rv,list)
-                    binding.rvOrder.adapter=rvAdapterOrder
-                    rvAdapterOrder.notifyDataSetChanged()
 
+                    Toast.makeText(requireContext(), "$list_rv", Toast.LENGTH_SHORT).show()
+
+                    for (i in 0 until  list.size){
+                        getProductID(list_rv[i])
+
+                        if (i == list.size-1 ){
+                            rvAdapterOrder= RvAdapterOrder(list,list_product)
+                            binding.rvOrder.adapter=rvAdapterOrder
+                            rvAdapterOrder.notifyDataSetChanged()
+
+                        }
+                    }
+
+
+                    Toast.makeText(requireContext(), "${list_product}", Toast.LENGTH_SHORT).show()
+                  //  Toast.makeText(requireContext(), "$list_product", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
                     Toast.makeText(requireContext(), response.message(), Toast.LENGTH_LONG).show()
@@ -69,22 +84,26 @@ class OrderFragment : Fragment() {
             }
 
         })
+
     }
 
     private fun getProductID(id:Int){
+        list_product= ArrayList()
         apiServis=ApiClinet.getApiServis(requireContext())
         apiServis.getProductId(id).enqueue(object :Callback<ArrayList<Product>>{
             override fun onResponse(
                 call: Call<ArrayList<Product>>,
                 response: Response<ArrayList<Product>>,
             ) {
-                Toast.makeText(requireContext(), "getProductID", Toast.LENGTH_SHORT).show()
-                list_rv.addAll(response.body()!!)
+                list_product.addAll(response.body()!!)
+                Toast.makeText(requireContext(), "${list_product}", Toast.LENGTH_SHORT).show()
             }
 
             override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
 
             }
         })
+
     }
+
 }
