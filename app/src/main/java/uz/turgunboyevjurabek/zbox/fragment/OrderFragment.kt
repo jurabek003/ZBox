@@ -53,26 +53,10 @@ class OrderFragment : Fragment() {
                 if (response.isSuccessful && response.body()!= null){
                     list = ArrayList()
                     list.addAll(response.body()!!)
-                    for (i in 0 until list.size){
-                        list_rv.add(list[i].mahsulot)
-                    }
 
-                    Toast.makeText(requireContext(), "$list_rv", Toast.LENGTH_SHORT).show()
+                    rvAdapterOrder=RvAdapterOrder(context!!,list)
+                    binding.rvOrder.adapter=rvAdapterOrder
 
-                    for (i in 0 until  list.size){
-                        getProductID(list_rv[i])
-
-                        if (i == list.size-1 ){
-                            rvAdapterOrder= RvAdapterOrder(list,list_product)
-                            binding.rvOrder.adapter=rvAdapterOrder
-                            rvAdapterOrder.notifyDataSetChanged()
-
-                        }
-                    }
-
-
-                    Toast.makeText(requireContext(), "${list_product}", Toast.LENGTH_SHORT).show()
-                  //  Toast.makeText(requireContext(), "$list_product", Toast.LENGTH_SHORT).show()
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
                     Toast.makeText(requireContext(), response.message(), Toast.LENGTH_LONG).show()
@@ -87,7 +71,7 @@ class OrderFragment : Fragment() {
 
     }
 
-    private fun getProductID(id:Int){
+/*    private fun getProductID(id:Int){
         list_product= ArrayList()
         apiServis=ApiClinet.getApiServis(requireContext())
         apiServis.getProductId(id).enqueue(object :Callback<ArrayList<Product>>{
@@ -98,12 +82,13 @@ class OrderFragment : Fragment() {
                 list_product.addAll(response.body()!!)
                 Toast.makeText(requireContext(), "${list_product}", Toast.LENGTH_SHORT).show()
             }
-
             override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
 
             }
         })
 
     }
+
+ */
 
 }
