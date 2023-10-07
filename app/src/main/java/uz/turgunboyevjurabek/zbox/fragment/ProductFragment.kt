@@ -12,8 +12,8 @@ import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Adapter.AdapterProduct
 import uz.turgunboyevjurabek.zbox.Objekt.markUser
+import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.databinding.FragmentProductBinding
-import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
 import uz.turgunboyevjurabek.zbox.madels.Product
 
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
@@ -40,8 +40,8 @@ class ProductFragment : Fragment() {
                 if (response.isSuccessful) {
                     adapter= AdapterProduct(response.body(),object:AdapterProduct.rvAction{
                         override fun OnClick(arraylist: ArrayList<Product>, position: Int) {
-                            markUser.id=arraylist[position].id
-
+                            markUser.id = arraylist[position].id
+                            findNavController().navigate(R.id.productAboutFragment)
                         }
                     })
                     binding.productRv.adapter=adapter

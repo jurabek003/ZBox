@@ -39,6 +39,8 @@ class OrderFragment : Fragment() {
         // Inflate the layout for this fragment
         ordersGetFromApi()
 
+        getProductID(5)
+
         return binding.root
     }
 
@@ -53,9 +55,9 @@ class OrderFragment : Fragment() {
                 if (response.isSuccessful && response.body()!= null){
                     list = ArrayList()
                     list.addAll(response.body()!!)
-
                     rvAdapterOrder=RvAdapterOrder(context!!,list)
                     binding.rvOrder.adapter=rvAdapterOrder
+
 
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
@@ -71,7 +73,7 @@ class OrderFragment : Fragment() {
 
     }
 
-/*    private fun getProductID(id:Int){
+ private fun getProductID(id:Int){
         list_product= ArrayList()
         apiServis=ApiClinet.getApiServis(requireContext())
         apiServis.getProductId(id).enqueue(object :Callback<ArrayList<Product>>{
@@ -80,15 +82,15 @@ class OrderFragment : Fragment() {
                 response: Response<ArrayList<Product>>,
             ) {
                 list_product.addAll(response.body()!!)
-                Toast.makeText(requireContext(), "${list_product}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "${response.body()}", Toast.LENGTH_SHORT).show()
             }
             override fun onFailure(call: Call<ArrayList<Product>>, t: Throwable) {
+                Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
 
             }
         })
 
     }
 
- */
 
 }
