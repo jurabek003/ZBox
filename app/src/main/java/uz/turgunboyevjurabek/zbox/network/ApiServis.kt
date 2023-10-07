@@ -11,7 +11,8 @@ import uz.turgunboyevjurabek.zbox.madels.Client.Client_Post_Request
 import uz.turgunboyevjurabek.zbox.madels.Client.Clients_Get
 import uz.turgunboyevjurabek.zbox.madels.Client.Clients_Post
 import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
-import uz.turgunboyevjurabek.zbox.madels.Product
+import uz.turgunboyevjurabek.zbox.madels.Product.Product
+import uz.turgunboyevjurabek.zbox.madels.Product.Product_Get_with_ID
 
 interface ApiServis {
 
@@ -22,7 +23,7 @@ interface ApiServis {
 
     //Client qo'shish uchun
     @POST("clientlar/")
-    fun postClient(@Body clientPostRequest: Client_Post_Request):Call<ArrayList<Clients_Post>>
+    fun postClient(@Body clientPostRequest: Client_Post_Request):Call<Clients_Post>
 
     //Client id orqli olish
     @GET("clientlar/{id}/")
@@ -34,7 +35,7 @@ interface ApiServis {
 
     //  Maxsulot id orqali olish
     @GET("mahsulotlar/{id}/")
-    fun getProductId(@Path("id") id :Int):Call<ArrayList<Product>>
+    fun getProductId(@Path("id") id :Int):Call<Product_Get_with_ID>
 
     //Sotuvchilarni hammasini olish uchun
     @GET("sotuvchilar/")

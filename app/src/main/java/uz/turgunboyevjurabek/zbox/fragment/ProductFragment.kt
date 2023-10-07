@@ -10,14 +10,13 @@ import androidx.navigation.fragment.findNavController
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import uz.turgunboyevjurabek.zbox.Adapter.AdapterProduct
 import uz.turgunboyevjurabek.zbox.Objekt.markUser
 import uz.turgunboyevjurabek.zbox.R
+import uz.turgunboyevjurabek.zbox.adapter.AdapterProduct
 import uz.turgunboyevjurabek.zbox.databinding.FragmentProductBinding
-import uz.turgunboyevjurabek.zbox.madels.Product
+import uz.turgunboyevjurabek.zbox.madels.Product.Product
 
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
-import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 class ProductFragment : Fragment() {
     private lateinit var adapter: AdapterProduct
@@ -38,9 +37,10 @@ class ProductFragment : Fragment() {
                 response: Response<ArrayList<Product>>
             ) {
                 if (response.isSuccessful) {
-                    adapter= AdapterProduct(response.body(),object:AdapterProduct.rvAction{
+                    adapter= AdapterProduct(response.body(),object: AdapterProduct.rvAction{
                         override fun OnClick(arraylist: ArrayList<Product>, position: Int) {
                             markUser.id = arraylist[position].id
+                            Toast.makeText(requireActivity(), "${arraylist[position]}", Toast.LENGTH_SHORT).show()
                             findNavController().navigate(R.id.productAboutFragment)
                         }
                     })

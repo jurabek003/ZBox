@@ -77,10 +77,10 @@ class ClientFragment : Fragment() {
                 itemAddClientBinding.apply {
                     if (!clientName.text.isNullOrEmpty() && !clientLastName.text.isNullOrEmpty() && !clientManzil.text.isNullOrEmpty() && !clientTel.text.isNullOrEmpty() && !clientSumma.text.isNullOrEmpty()){
                         val clientsPost= Client_Post_Request(clientName.text.toString(),clientLastName.text.toString(),clientManzil.text.toString(),clientTel.text.toString(),clientSumma.text.toString().toInt())
-                        apiServis.postClient(clientsPost).enqueue(object :Callback<ArrayList<Clients_Post>>{
+                        apiServis.postClient(clientsPost).enqueue(object :Callback<Clients_Post>{
                             override fun onResponse(
-                                call: Call<ArrayList<Clients_Post>>,
-                                response: Response<ArrayList<Clients_Post>>,
+                                call: Call<Clients_Post>,
+                                response: Response<Clients_Post>
                             ) {
                                 if (response.isSuccessful && response.body()!=null){
                                     Toast.makeText(requireContext(), "YEsssssssssssssss", Toast.LENGTH_SHORT).show()
@@ -88,10 +88,7 @@ class ClientFragment : Fragment() {
                                 }
                             }
 
-                            override fun onFailure(
-                                call: Call<ArrayList<Clients_Post>>,
-                                t: Throwable,
-                            ) {
+                            override fun onFailure(call: Call<Clients_Post>, t: Throwable) {
                                 Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()
 
                             }

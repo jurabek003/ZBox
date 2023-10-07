@@ -1,4 +1,4 @@
-package uz.turgunboyevjurabek.zbox.Adapter
+package uz.turgunboyevjurabek.zbox.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,11 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import uz.turgunboyevjurabek.zbox.databinding.ItemProductAdapterBinding
 
 
-import uz.turgunboyevjurabek.zbox.madels.Product
+import uz.turgunboyevjurabek.zbox.madels.Product.Product
 
 
-class AdapterProduct(val arraylist: ArrayList<Product>?,val rvaction: rvAction): RecyclerView.Adapter<AdapterProduct.vh>() {
-    inner class vh(val itemRvBinding: ItemProductAdapterBinding):RecyclerView.ViewHolder(itemRvBinding.root)
+class AdapterProduct(val arraylist: ArrayList<Product>?, val rvaction: rvAction): RecyclerView.Adapter<AdapterProduct.vh>() {
+    inner class vh(val itemRvBinding: ItemProductAdapterBinding): RecyclerView.ViewHolder(itemRvBinding.root)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): vh {
         return vh(ItemProductAdapterBinding.inflate(LayoutInflater.from(parent.context),parent,false))
@@ -32,7 +32,7 @@ class AdapterProduct(val arraylist: ArrayList<Product>?,val rvaction: rvAction):
 
     }
     interface rvAction{
-        fun OnClick(arraylist: ArrayList<Product>,position: Int)
+        fun OnClick(arraylist: ArrayList<Product>, position: Int)
     }
 
 }

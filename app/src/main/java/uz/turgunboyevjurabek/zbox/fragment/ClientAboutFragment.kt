@@ -52,7 +52,6 @@ class ClientAboutFragment : Fragment() {
     private fun apiWorking() {
         val idNumber = ClientObj.id
         if (idNumber != null) {
-
             apiServis=ApiClinet.getApiServis(requireContext())
             apiServis.getClientId(idNumber).enqueue(object :Callback<Clients_Get>{
                 override fun onResponse(call: Call<Clients_Get>, response: Response<Clients_Get>) {
