@@ -37,6 +37,7 @@ class ProductFragment : Fragment() {
                 response: Response<ArrayList<Product>>
             ) {
                 if (response.isSuccessful) {
+                    //Murodiljon Karimov
                     adapter= AdapterProduct(response.body(),object: AdapterProduct.rvAction{
                         override fun OnClick(arraylist: ArrayList<Product>, position: Int) {
                             markUser.id = arraylist[position].id
