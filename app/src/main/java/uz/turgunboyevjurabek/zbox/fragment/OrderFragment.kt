@@ -40,11 +40,6 @@ class OrderFragment : Fragment() {
         list_rv= ArrayList()
         ordersGetFromApi()
 
-        if (list_rv.isNotEmpty()){
-            Toast.makeText(requireContext(), "list_rv tulyapti $list_rv", Toast.LENGTH_SHORT).show()
-
-            getProductID(list_rv)
-        }
 
         return binding.root
     }
@@ -60,9 +55,7 @@ class OrderFragment : Fragment() {
                     list.addAll(response.body()!!)
                     Toast.makeText(requireContext(), "Respons keldi $list", Toast.LENGTH_SHORT).show()
                     if (list_product.isNotEmpty() && list.isNotEmpty()){
-                        rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product)
-                        binding.rvOrder.adapter=rvAdapterOrder
-                        Toast.makeText(requireContext(), "product kist tula", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(requireContext(), "product list tula", Toast.LENGTH_SHORT).show()
                     }
 
                     for(i in 0 until list.size){
@@ -72,7 +65,10 @@ class OrderFragment : Fragment() {
                         Toast.makeText(requireContext(), "list_rv tuldi $list_rv", Toast.LENGTH_SHORT).show()
                     }
 
-
+                    if (list_rv.isNotEmpty()){
+                        getProductID(list_rv)
+                        ID=list_rv.size
+                    }
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
                     Toast.makeText(requireContext(), response.message(), Toast.LENGTH_LONG).show()
@@ -90,6 +86,8 @@ class OrderFragment : Fragment() {
  private fun getProductID(list_son:ArrayList<Int>){
 
         apiServis=ApiClinet.getApiServis(requireContext())
+     Toast.makeText(requireContext()
+         , "getProductID ichidagi birinchi list_rv $list_rv", Toast.LENGTH_SHORT).show()
 
      for (i in 0 until list_son.size){
          apiServis.getProductId(list_son[i]).enqueue(object :Callback<Product_Get_with_ID>{
@@ -100,6 +98,19 @@ class OrderFragment : Fragment() {
                  list_product.add(response.body()!!)
                  Toast.makeText(requireContext(), "${response.body()}", Toast.LENGTH_SHORT).show()
                  Product_with_ID.list.add(response.body()!!)
+                 Toast.makeText(requireContext(), "responsni ichida list_rv = $list_rv", Toast.LENGTH_SHORT).show()
+                 Toast.makeText(requireContext(), "responsni ichida list_product = ${list_product.size}", Toast.LENGTH_SHORT).show()
+
+                 if (list_product.isNotEmpty()){
+
+                     if (list_product.size==ID){
+                         Toast.makeText(requireContext(), "list_productt ten buldi ID ga", Toast.LENGTH_SHORT).show()
+                         rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product)
+                         binding.rvOrder.adapter=rvAdapterOrder
+                         rvAdapterOrder.notifyDataSetChanged()
+                     }
+
+                 }
 
              }
              override fun onFailure(call: Call<Product_Get_with_ID>, t: Throwable) {
