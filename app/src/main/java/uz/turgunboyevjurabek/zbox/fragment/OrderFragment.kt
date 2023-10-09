@@ -37,10 +37,12 @@ class OrderFragment : Fragment() {
         list_product= ArrayList()
         list = ArrayList()
         list_son= ArrayList()
-
+        list_rv= ArrayList()
         ordersGetFromApi()
 
         if (list_rv.isNotEmpty()){
+            Toast.makeText(requireContext(), "list_rv tulyapti $list_rv", Toast.LENGTH_SHORT).show()
+
             getProductID(list_rv)
         }
 
@@ -49,7 +51,6 @@ class OrderFragment : Fragment() {
 
     private fun ordersGetFromApi() {
         apiServis=ApiClinet.getApiServis(requireContext())
-        list_rv= ArrayList()
         apiServis.getOrders().enqueue(object :Callback<ArrayList<Order_get>>{
             override fun onResponse(
                 call: Call<ArrayList<Order_get>>,
@@ -57,7 +58,7 @@ class OrderFragment : Fragment() {
             ) {
                 if (response.isSuccessful && response.body()!= null){
                     list.addAll(response.body()!!)
-                    Toast.makeText(requireContext(), "Respons keldi", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Respons keldi $list", Toast.LENGTH_SHORT).show()
                     if (list_product.isNotEmpty() && list.isNotEmpty()){
                         rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product)
                         binding.rvOrder.adapter=rvAdapterOrder
@@ -66,6 +67,9 @@ class OrderFragment : Fragment() {
 
                     for(i in 0 until list.size){
                         list_rv.add(list[i].mahsulot)
+                    }
+                    if (!list_rv.isEmpty()){
+                        Toast.makeText(requireContext(), "list_rv tuldi $list_rv", Toast.LENGTH_SHORT).show()
                     }
 
 

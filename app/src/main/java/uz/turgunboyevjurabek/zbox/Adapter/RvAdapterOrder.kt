@@ -15,11 +15,12 @@ import uz.turgunboyevjurabek.zbox.madels.Product.Product_Get_with_ID
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import javax.security.auth.callback.Callback
 
-class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>? ):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
+class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val list1:ArrayList<Product_Get_with_ID> ):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
     inner class Vh(val itemOrderRvBinding: ItemOrderRvBinding):ViewHolder(itemOrderRvBinding.root){
-        fun onBind(order_get: Order_get,position: Int){
 
-            itemOrderRvBinding.itemOrderName.text=order_get.sana
+        fun onBind(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID){
+
+            itemOrderRvBinding.itemOrderName.text=productGetWithId.nom
 
         }
 
@@ -33,6 +34,6 @@ class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>? ):Rec
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
 
-        holder.onBind(list2!![position],position)
+        holder.onBind(list2!![position],position,list1[position])
     }
 }
