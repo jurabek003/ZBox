@@ -13,7 +13,6 @@ import uz.turgunboyevjurabek.zbox.Objekt.Product_with_ID
 import uz.turgunboyevjurabek.zbox.adapter.RvAdapterOrder
 import uz.turgunboyevjurabek.zbox.databinding.FragmentOrderBinding
 import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
-import uz.turgunboyevjurabek.zbox.madels.Product.Product
 import uz.turgunboyevjurabek.zbox.madels.Product.Product_Get_with_ID
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
@@ -25,7 +24,7 @@ class OrderFragment : Fragment() {
      lateinit var list:ArrayList<Order_get>
      lateinit var list_rv:ArrayList<Int>
      lateinit var list_product:ArrayList<Product_Get_with_ID>
-    private var ID:Int?=null
+    private var Size:Int?=null
     private lateinit var list_son: ArrayList<Int>
     private val binding by lazy { FragmentOrderBinding.inflate(layoutInflater)}
 
@@ -53,22 +52,15 @@ class OrderFragment : Fragment() {
             ) {
                 if (response.isSuccessful && response.body()!= null){
                     list.addAll(response.body()!!)
-                    Toast.makeText(requireContext(), "Respons keldi $list", Toast.LENGTH_SHORT).show()
-                    if (list_product.isNotEmpty() && list.isNotEmpty()){
-                        Toast.makeText(requireContext(), "product list tula", Toast.LENGTH_SHORT).show()
-                    }
-
+                    Toast.makeText(requireContext(), "successful at getOrder ", Toast.LENGTH_SHORT).show()
                     for(i in 0 until list.size){
                         list_rv.add(list[i].mahsulot)
                     }
-                    if (!list_rv.isEmpty()){
-                        Toast.makeText(requireContext(), "list_rv tuldi $list_rv", Toast.LENGTH_SHORT).show()
-                    }
-
                     if (list_rv.isNotEmpty()){
                         getProductID(list_rv)
-                        ID=list_rv.size
+                        Size=list_rv.size
                     }
+
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
                     Toast.makeText(requireContext(), response.message(), Toast.LENGTH_LONG).show()
@@ -86,8 +78,6 @@ class OrderFragment : Fragment() {
  private fun getProductID(list_son:ArrayList<Int>){
 
         apiServis=ApiClinet.getApiServis(requireContext())
-     Toast.makeText(requireContext()
-         , "getProductID ichidagi birinchi list_rv $list_rv", Toast.LENGTH_SHORT).show()
 
      for (i in 0 until list_son.size){
          apiServis.getProductId(list_son[i]).enqueue(object :Callback<Product_Get_with_ID>{
@@ -97,14 +87,9 @@ class OrderFragment : Fragment() {
              ) {
                  list_product.add(response.body()!!)
                  Toast.makeText(requireContext(), "${response.body()}", Toast.LENGTH_SHORT).show()
-                 Product_with_ID.list.add(response.body()!!)
-                 Toast.makeText(requireContext(), "responsni ichida list_rv = $list_rv", Toast.LENGTH_SHORT).show()
-                 Toast.makeText(requireContext(), "responsni ichida list_product = ${list_product.size}", Toast.LENGTH_SHORT).show()
-
                  if (list_product.isNotEmpty()){
-
-                     if (list_product.size==ID){
-                         Toast.makeText(requireContext(), "list_productt ten buldi ID ga", Toast.LENGTH_SHORT).show()
+                     if (list_product.size==Size){
+                         Toast.makeText(requireContext(), "successful at getProductId response", Toast.LENGTH_SHORT).show()
                          rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product)
                          binding.rvOrder.adapter=rvAdapterOrder
                          rvAdapterOrder.notifyDataSetChanged()

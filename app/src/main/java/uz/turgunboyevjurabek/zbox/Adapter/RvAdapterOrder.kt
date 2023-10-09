@@ -21,7 +21,7 @@ class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val l
         fun onBind(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID){
 
             itemOrderRvBinding.itemOrderName.text=productGetWithId.nom
-
+            itemOrderRvBinding.itemOrderSana.text=order_get.sana
         }
 
     }
