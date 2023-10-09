@@ -87,7 +87,7 @@ class OrderFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<ArrayList<Order_get>>, t: Throwable) {
-                Toast.makeText(requireContext(), "failure ga tushdi", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "failure ga tushdi ${t.message}", Toast.LENGTH_SHORT).show()
             }
 
         })

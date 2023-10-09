@@ -9,19 +9,21 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import retrofit2.Call
 import retrofit2.Response
+import uz.turgunboyevjurabek.zbox.Seller.getSeller
 import uz.turgunboyevjurabek.zbox.databinding.ItemOrderRvBinding
 import uz.turgunboyevjurabek.zbox.madels.Order.Order_get
 import uz.turgunboyevjurabek.zbox.madels.Product.Product_Get_with_ID
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import javax.security.auth.callback.Callback
 
-class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val list1:ArrayList<Product_Get_with_ID> ):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
+class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val list1:ArrayList<Product_Get_with_ID>,val list3:ArrayList<getSeller>):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
     inner class Vh(val itemOrderRvBinding: ItemOrderRvBinding):ViewHolder(itemOrderRvBinding.root){
 
-        fun onBind(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID){
+        fun onBind(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID,getSeller: getSeller){
 
             itemOrderRvBinding.itemOrderName.text=productGetWithId.nom
             itemOrderRvBinding.itemOrderSana.text=order_get.sana
+            itemOrderRvBinding.itemOrderSotuvchi.text=getSeller.ism
         }
 
     }
@@ -34,6 +36,6 @@ class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val l
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
 
-        holder.onBind(list2!![position],position,list1[position])
+        holder.onBind(list2!![position],position,list1[position],list3[position])
     }
 }
