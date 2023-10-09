@@ -40,6 +40,9 @@ class OrderFragment : Fragment() {
 
         ordersGetFromApi()
 
+        if (list_rv.isNotEmpty()){
+            getProductID(list_rv)
+        }
 
         return binding.root
     }
@@ -54,8 +57,17 @@ class OrderFragment : Fragment() {
             ) {
                 if (response.isSuccessful && response.body()!= null){
                     list.addAll(response.body()!!)
-                    rvAdapterOrder=RvAdapterOrder(requireContext(),list)
-                    binding.rvOrder.adapter=rvAdapterOrder
+                    Toast.makeText(requireContext(), "Respons keldi", Toast.LENGTH_SHORT).show()
+                    if (list_product.isNotEmpty() && list.isNotEmpty()){
+                        rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product)
+                        binding.rvOrder.adapter=rvAdapterOrder
+                        Toast.makeText(requireContext(), "product kist tula", Toast.LENGTH_SHORT).show()
+                    }
+
+                    for(i in 0 until list.size){
+                        list_rv.add(list[i].mahsulot)
+                    }
+
 
                 }else{
                     Toast.makeText(requireContext(), "vay elsga tushdi", Toast.LENGTH_SHORT).show()
@@ -84,6 +96,7 @@ class OrderFragment : Fragment() {
                  list_product.add(response.body()!!)
                  Toast.makeText(requireContext(), "${response.body()}", Toast.LENGTH_SHORT).show()
                  Product_with_ID.list.add(response.body()!!)
+
              }
              override fun onFailure(call: Call<Product_Get_with_ID>, t: Throwable) {
                  Toast.makeText(requireContext(), "${t.message}", Toast.LENGTH_SHORT).show()

@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ProductAboutFragment">
-    <?xml version="1.0" encoding="utf-8"?>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -134,7 +133,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_address"
+                        android:id="@+id/card_address1"
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
                         android:layout_marginBottom="20dp"
@@ -156,7 +155,7 @@
 
 
                             <TextView
-                                android:id="@+id/product_miqdor"
+                                android:id="@+id/product_miqdor2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -167,7 +166,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="25sp" />
                             <TextView
-                                android:id="@+id/product_olchov"
+                                android:id="@+id/product_olchov2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -181,7 +180,7 @@
                     </com.google.android.material.card.MaterialCardView>
 
                     <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/card_address"
+                        android:id="@+id/card_address2"
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
                         android:layout_marginBottom="20dp"
@@ -203,7 +202,7 @@
 
 
                             <TextView
-                                android:id="@+id/product_miqdor"
+                                android:id="@+id/product_miqdor1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
@@ -214,7 +213,7 @@
                                 android:textColor="@color/black"
                                 android:textSize="25sp" />
                             <TextView
-                                android:id="@+id/product_olchov"
+                                android:id="@+id/product_olchov1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
