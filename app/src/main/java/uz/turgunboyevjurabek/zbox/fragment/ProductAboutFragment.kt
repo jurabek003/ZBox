@@ -11,6 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Objekt.markUser
+import uz.turgunboyevjurabek.zbox.Seller.getSeller
 import uz.turgunboyevjurabek.zbox.databinding.FragmentProductAboutBinding
 import uz.turgunboyevjurabek.zbox.madels.Product.Product_Get_with_ID
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
@@ -48,6 +49,26 @@ class ProductAboutFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
+        // shunchaki testing uchun yozildi
+      /*  val apiServis=ApiClinet.getApiServis(requireContext())
+        for (i in 1 until 4){
+            apiServis.getSeller(i).enqueue(object :Callback<getSeller>{
+                override fun onResponse(call: Call<getSeller>, response: Response<getSeller>) {
+                    if (response.isSuccessful && response.body() != null){
+                        Toast.makeText(requireContext(), "${response.body()}", Toast.LENGTH_SHORT).show()
+                    }else{
+                        Toast.makeText(requireContext(), "responsdagi hatolik", Toast.LENGTH_SHORT).show()
+                    }
+                }
+
+                override fun onFailure(call: Call<getSeller>, t: Throwable) {
+                    Toast.makeText(requireContext(), "Failure ga tushdi", Toast.LENGTH_SHORT).show()
+                }
+            })
+        }
+       */
         
         return binding.root
     }

@@ -22,9 +22,9 @@ import uz.turgunboyevjurabek.zbox.network.ApiServis
 class OrderFragment : Fragment() {
     private lateinit var apiServis: ApiServis
     private lateinit var rvAdapterOrder: RvAdapterOrder
-     lateinit var list:ArrayList<Order_get>
-     lateinit var list_rv:ArrayList<Int>
-     lateinit var list_product:ArrayList<Product_Get_with_ID>
+    lateinit var list:ArrayList<Order_get>
+    lateinit var list_rv:ArrayList<Int>
+    lateinit var list_product:ArrayList<Product_Get_with_ID>
     private var Size:Int?=null
     private var Size2:Int?=null
     private lateinit var list_son: ArrayList<Int>
@@ -105,6 +105,16 @@ class OrderFragment : Fragment() {
                  response: Response<Product_Get_with_ID>
              ) {
                  list_product.add(response.body()!!)
+                 if (list_product.isNotEmpty() && list_seller.isNotEmpty() ){
+                     if (list_product.size==Size ){
+                         if (list_seller.size==Size2){
+                             rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product,list_seller)
+                             binding.rvOrder.adapter=rvAdapterOrder
+                             rvAdapterOrder.notifyDataSetChanged()
+                         }
+                     }
+
+                 }
 
 
              }
@@ -117,26 +127,14 @@ class OrderFragment : Fragment() {
     
     private fun getSellerId(list_son2:ArrayList<Int>){
         apiServis=ApiClinet.getApiServis(requireContext())
-        
-        for (i in 0 until list_son2.size){
-            apiServis.getSeller(list_son2[i]).enqueue(object :Callback<getSeller>{
+        Toast.makeText(requireContext(), "abs ${list_son2.size}", Toast.LENGTH_SHORT).show()
+        for (i in 1 until list_son2.size+1){
+            apiServis.getSeller(i).enqueue(object :Callback<getSeller>{
                 override fun onResponse(call: Call<getSeller>, response: Response<getSeller>) {
                     if (response.isSuccessful && response.body()!=null){
                      //   Toast.makeText(requireContext(), "getSeller da hammasi yaxshi ${response.body()}", Toast.LENGTH_SHORT).show(
                         list_seller.add(response.body()!!)
-
-                        if (list_product.isNotEmpty() && list_seller.isNotEmpty() ){
-                            Toast.makeText(requireContext(), "list_seller.size ${list_seller.size} Size2 $Size2", Toast.LENGTH_LONG).show()
-                            if (list_product.size==Size ){
-                                if (list_seller.size==Size2){
-                                    rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product,list_seller)
-                                    binding.rvOrder.adapter=rvAdapterOrder
-                                    rvAdapterOrder.notifyDataSetChanged()
-                                }
-                            }
-
-                        }
-
+                        Toast.makeText(requireContext(), "list_seller.size ${list_seller.size} Size2 $Size2", Toast.LENGTH_LONG).show()
                     }
                 }
 
