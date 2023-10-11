@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:fontFamily="serif"
-                    android:text="name"
+                    android:text="order name"
                     android:layout_marginEnd="5dp"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -56,59 +56,185 @@
             </LinearLayout>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_call"
+                android:id="@+id/card_order_about_seller_and_client"
                 android:layout_width="100dp"
                 android:layout_height="65dp"
                 android:layout_margin="65dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:backgroundTint="@color/white"
                 android:foreground="?selectableItemBackground"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="1.5dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeWidth="0dp">
-
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerInside"
-                    android:background="@color/white"
-                    android:src="@drawable/ic_calll" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Client"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tht_client_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/alegreya"
+                        android:scaleType="centerInside"
+                        android:text="Client name"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card_sms"
                 android:layout_width="100dp"
                 android:layout_height="65dp"
                 android:layout_margin="65dp"
                 android:clickable="true"
                 android:focusable="true"
+                android:backgroundTint="@color/white"
                 android:foreground="?selectableItemBackground"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="1.5dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:strokeWidth="0dp">
-
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerInside"
-                    android:background="@color/white"
-                    android:src="@drawable/ic_massage" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Seller"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:id="@+id/tht_seller_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="10dp"
+                        android:fontFamily="@font/alegreya"
+                        android:scaleType="centerInside"
+                        android:text="Seller name"
+                        android:textColor="@color/black" />
+
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
+                android:id="@+id/layout_summa_and_amoun_paid"
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:layout_marginTop="20dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/card_call"
+                app:layout_constraintTop_toBottomOf="@+id/card_order_about_seller_and_client"
+                android:orientation="horizontal">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:clickable="true"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="20dp"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp"
+                    app:cardElevation="2.5dp"
+                    android:backgroundTint="@color/white"
+                    app:strokeWidth="0dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Summa"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:id="@+id/order_about_summa"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="false"
+                            android:text="order summa"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/alegreya"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"/>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+
+                    android:layout_width="100dp"
+                    android:layout_height="75dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?selectableItemBackground"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="10dp"
+                    android:layout_weight="1"
+                    android:layout_marginHorizontal="20dp"
+                    app:cardElevation="2.5dp"
+                    android:backgroundTint="@color/white"
+                    app:strokeWidth="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Amount paid"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="10dp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAllCaps="false"
+                            android:text="amount summa"
+                            android:textColor="@color/black"
+                            android:fontFamily="serif"
+                            android:layout_gravity="center"
+                            android:layout_marginTop="5dp"/>
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>  <LinearLayout
+                android:id="@+id/layout_date"
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/layout_summa_and_amoun_paid"
                 android:orientation="horizontal">
                 <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card_address"
-                    android:layout_width="75dp"
+                    android:layout_width="100dp"
                     android:layout_height="75dp"
                     android:clickable="true"
                     android:focusable="true"
@@ -124,34 +250,32 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_home"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"/>
                         <TextView
-                            android:id="@+id/card_client_address"
+                            android:id="@+id/order_about_date"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAllCaps="false"
-                            android:text="mazil"
-                            android:textSize="15sp"
+                            android:text="order date"
                             android:textColor="@color/black"
-                            android:fontFamily="serif"
+                            android:fontFamily="@font/alegreya"
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"/>
                     </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card_summa"
-                    android:layout_width="75dp"
+                </com.google.android.material.card.MaterialCardView><com.google.android.material.card.MaterialCardView
+                    android:layout_width="100dp"
                     android:layout_height="75dp"
                     android:clickable="true"
+                    android:focusable="true"
                     android:layout_weight="1"
                     android:layout_marginHorizontal="20dp"
-                    android:focusable="true"
                     android:foreground="?selectableItemBackground"
                     android:layout_gravity="center"
                     app:cardCornerRadius="10dp"
@@ -162,64 +286,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_moniey"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Debt summa"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"/>
                         <TextView
-                            android:id="@+id/card_client_summa"
+                            android:id="@+id/order_about_debt"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAllCaps="false"
-                            android:text="qarzi"
-                            android:textSize="15sp"
+                            android:text="order debt"
                             android:textColor="@color/black"
-                            android:fontFamily="serif"
+                            android:fontFamily="@font/alegreya"
                             android:layout_gravity="center"
                             android:layout_marginTop="5dp"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:id="@+id/card_birbalo"
-                    android:layout_width="75dp"
-                    android:layout_height="75dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:foreground="?selectableItemBackground"
-                    android:layout_gravity="center"
-                    app:cardCornerRadius="10dp"
-                    android:layout_weight="1"
-                    android:layout_marginHorizontal="20dp"
-                    app:cardElevation="2.5dp"
-                    android:backgroundTint="@color/white"
-                    app:strokeWidth="0dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical">
-                        <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
-                            android:src="@drawable/ic_home"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="10dp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textAllCaps="false"
-                            android:text="mazil"
-                            android:textSize="15sp"
-                            android:textColor="@color/black"
-                            android:fontFamily="serif"
-                            android:layout_gravity="center"
-                            android:layout_marginTop="5dp"/>
-                    </LinearLayout>
-
-                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

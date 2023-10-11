@@ -20,7 +20,6 @@
             android:id="@+id/item_order_img"
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:layout_gravity="center"
             android:scaleType="centerCrop"
             android:src="@drawable/img"/>
         <TextView
@@ -30,18 +29,7 @@
             android:textSize="18sp"
             android:textColor="@color/black"
             android:text="ismi"
-            android:layout_marginTop="5dp"
-            android:layout_gravity="center"
-            android:textAllCaps="false"
-            android:fontFamily="serif"/>
-        <TextView
-            android:id="@+id/item_order_sotuvchi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:text="sotuvchi"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_gravity="center"
             android:textAllCaps="false"
             android:fontFamily="serif"/>
