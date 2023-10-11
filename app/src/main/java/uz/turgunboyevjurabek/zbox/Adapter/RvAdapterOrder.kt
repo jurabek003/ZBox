@@ -16,14 +16,17 @@ import uz.turgunboyevjurabek.zbox.madels.Product.Product_Get_with_ID
 import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import javax.security.auth.callback.Callback
 
-class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val list1:ArrayList<Product_Get_with_ID>,val list3:ArrayList<getSeller>):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
+class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val list1:ArrayList<Product_Get_with_ID>?,val itemClick: ItemClick ):RecyclerView.Adapter<RvAdapterOrder.Vh>() {
     inner class Vh(val itemOrderRvBinding: ItemOrderRvBinding):ViewHolder(itemOrderRvBinding.root){
 
-        fun onBind(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID,getSeller: getSeller){
+        fun onBind(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID){
 
             itemOrderRvBinding.itemOrderName.text=productGetWithId.nom
             itemOrderRvBinding.itemOrderSana.text=order_get.sana
-            itemOrderRvBinding.itemOrderSotuvchi.text=getSeller.ism
+
+            itemOrderRvBinding.root.setOnClickListener {
+                itemClick.itemClick(order_get,position,productGetWithId)
+            }
         }
 
     }
@@ -36,6 +39,10 @@ class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val l
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
 
-        holder.onBind(list2!![position],position,list1[position],list3[position])
+        holder.onBind(list2!![position],position, list1!![position])
     }
+    interface ItemClick{
+        fun itemClick(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID)
+    }
+
 }

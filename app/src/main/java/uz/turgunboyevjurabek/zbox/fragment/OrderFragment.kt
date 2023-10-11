@@ -98,7 +98,7 @@ class OrderFragment : Fragment(),RvAdapterOrder.ItemClick {
                  response: Response<Product_Get_with_ID>
              ) {
                  list_product.add(response.body()!!)
-                 if (list_product.isNotEmpty() && list_seller.isNotEmpty() ){
+                 if (list_product.isNotEmpty()){
                      if (list_product.size==Size ){
                              rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product,this@OrderFragment)
                              binding.rvOrder.adapter=rvAdapterOrder
@@ -141,7 +141,7 @@ class OrderFragment : Fragment(),RvAdapterOrder.ItemClick {
      */
 
    override fun itemClick(order_get: Order_get, position: Int, productGetWithId: Product_Get_with_ID, ) {
-        findNavController().navigate(R.id.orderAboutFragment, bundleOf("keyOrder" to order_get,"keyProduct" to productGetWithId ))
+  //      findNavController().navigate(R.id.orderAboutFragment, bundleOf("keyOrder" to order_get,"keyProduct" to productGetWithId ))
     }
 
 }
