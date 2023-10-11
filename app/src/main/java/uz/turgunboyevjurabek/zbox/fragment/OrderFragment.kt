@@ -1,15 +1,21 @@
 package uz.turgunboyevjurabek.zbox.fragment
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.databinding.Observable
+import androidx.navigation.fragment.findNavController
+import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import uz.turgunboyevjurabek.zbox.Objekt.Product_with_ID
+import uz.turgunboyevjurabek.zbox.R
 import uz.turgunboyevjurabek.zbox.Seller.getSeller
 import uz.turgunboyevjurabek.zbox.adapter.RvAdapterOrder
 import uz.turgunboyevjurabek.zbox.databinding.FragmentOrderBinding
@@ -19,7 +25,7 @@ import uz.turgunboyevjurabek.zbox.network.ApiClinet
 import uz.turgunboyevjurabek.zbox.network.ApiServis
 
 
-class OrderFragment : Fragment() {
+class OrderFragment : Fragment(),RvAdapterOrder.ItemClick {
     private lateinit var apiServis: ApiServis
     private lateinit var rvAdapterOrder: RvAdapterOrder
     lateinit var list:ArrayList<Order_get>
@@ -32,6 +38,7 @@ class OrderFragment : Fragment() {
     private lateinit var list_seller:ArrayList<getSeller>
     private val binding by lazy { FragmentOrderBinding.inflate(layoutInflater)}
 
+    @SuppressLint("CheckResult")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -40,16 +47,11 @@ class OrderFragment : Fragment() {
         list_product= ArrayList()
         list = ArrayList()
         list_son= ArrayList()
-        list_son2= ArrayList()
         list_rv= ArrayList()
-        list_seller= ArrayList()
-        
         ordersGetFromApi()
-
 
         return binding.root
     }
-
     private fun ordersGetFromApi() {
         apiServis=ApiClinet.getApiServis(requireContext())
         apiServis.getOrders().enqueue(object :Callback<ArrayList<Order_get>>{
@@ -64,19 +66,10 @@ class OrderFragment : Fragment() {
                     for(i in 0 until list.size){
                         list_rv.add(list[i].mahsulot)
                     }
-                    
-                    for(i in 0 until list.size){
-                        list_son2.add(list[i].sotuvchi)
-                    }
-                    
+
                     if (list_rv.isNotEmpty()){
                         getProductID(list_rv)
                         Size=list_rv.size
-                    }
-                    
-                    if (list_son2.isNotEmpty()){
-                        getSellerId(list_son2)
-                        Size2 = list_son2.size
                     }
                     
                     
@@ -107,11 +100,9 @@ class OrderFragment : Fragment() {
                  list_product.add(response.body()!!)
                  if (list_product.isNotEmpty() && list_seller.isNotEmpty() ){
                      if (list_product.size==Size ){
-                         if (list_seller.size==Size2){
-                             rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product,list_seller)
+                             rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product,this@OrderFragment)
                              binding.rvOrder.adapter=rvAdapterOrder
                              rvAdapterOrder.notifyDataSetChanged()
-                         }
                      }
 
                  }
@@ -124,8 +115,8 @@ class OrderFragment : Fragment() {
          }) 
      }
  }
-    
-    private fun getSellerId(list_son2:ArrayList<Int>){
+    // seller choopildi
+    /*private fun getSellerId(list_son2:ArrayList<Int>){
         apiServis=ApiClinet.getApiServis(requireContext())
         Toast.makeText(requireContext(), "abs ${list_son2.size}", Toast.LENGTH_SHORT).show()
         for (i in 1 until list_son2.size+1){
@@ -146,4 +137,12 @@ class OrderFragment : Fragment() {
         
         
     }
+
+     */
+
+   override fun itemClick(order_get: Order_get, position: Int, productGetWithId: Product_Get_with_ID, ) {
+        findNavController().navigate(R.id.orderAboutFragment, bundleOf("keyOrder" to order_get,"keyProduct" to productGetWithId ))
+    }
+
 }
+
