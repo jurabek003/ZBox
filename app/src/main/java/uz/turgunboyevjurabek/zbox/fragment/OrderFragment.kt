@@ -10,7 +10,6 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.databinding.Observable
 import androidx.navigation.fragment.findNavController
-import io.reactivex.schedulers.Schedulers
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -101,6 +100,8 @@ class OrderFragment : Fragment(),RvAdapterOrder.ItemClick {
                  if (list_product.isNotEmpty()){
                      if (list_product.size==Size ){
                              rvAdapterOrder=RvAdapterOrder(requireContext(),list,list_product,this@OrderFragment)
+                         binding.rvOrder.visibility=View.VISIBLE
+                         binding.scrollViewOrder.visibility=View.GONE
                              binding.rvOrder.adapter=rvAdapterOrder
                              rvAdapterOrder.notifyDataSetChanged()
                      }
