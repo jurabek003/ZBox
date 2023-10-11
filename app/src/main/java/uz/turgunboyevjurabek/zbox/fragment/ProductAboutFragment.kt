@@ -21,28 +21,36 @@ class ProductAboutFragment : Fragment() {
     private val binding by lazy { FragmentProductAboutBinding.inflate(layoutInflater) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val select_id = markUser.id
+        val api = ApiClinet.getApiServis(requireContext()).getProductId(select_id)
+            .enqueue(object : Callback<Product_Get_with_ID> {
+                override fun onResponse(
+                    call: Call<Product_Get_with_ID>,
+                    response: Response<Product_Get_with_ID>
+                ) {
+                    if (response.isSuccessful) {
+                        val product = response.body()
+                        if (product != null) {
+                            binding.productNom.text = product.nom
+                            binding.productHajmi.text = product.hajmi
+                            binding.productMiqdor.text = product.miqdor.toString()
+                            binding.productOlchov.text = product.olchov
+                            binding.productNarx.text = product.narx.toString()
+                            binding.productSana.text = product.kelganSana
+                            binding.writeText.text = "kelgan sana:"
 
-        Toast.makeText(requireContext(), "${markUser.id}", Toast.LENGTH_SHORT).show()
+                        }
+                    } else {
+                        Toast.makeText(context, "Yuklashdagi xatolik", Toast.LENGTH_SHORT).show()
 
-       val apiServis= ApiClinet.getApiServis(requireContext())
-        apiServis.getProductId(markUser.id).enqueue(object :Callback<Product_Get_with_ID>{
-            override fun onResponse(
-                call: Call<Product_Get_with_ID>,
-                response: Response<Product_Get_with_ID>
-            ) {
-                if (response.isSuccessful && response.body()!= null){
-                    Toast.makeText(requireContext(), "UrAAAAAAAAAA", Toast.LENGTH_SHORT).show()
+                    }
 
-                }else{
-                    Toast.makeText(requireContext(), "else tushdi", Toast.LENGTH_SHORT).show()
                 }
-            }
-            override fun onFailure(call: Call<Product_Get_with_ID>, t: Throwable) {
-                Toast.makeText(requireContext(), "onFailure tushdi ${t.message}", Toast.LENGTH_SHORT).show()
-                Log.d("hole", t.message.toString())
-            }
-        })
-        
+
+                override fun onFailure(call: Call<Product_Get_with_ID>, t: Throwable) {
+                    Toast.makeText(context, "Ulanishdagi xatolik", Toast.LENGTH_SHORT).show()
+                }
+            })
     }
 
     override fun onCreateView(
@@ -50,26 +58,6 @@ class ProductAboutFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        // shunchaki testing uchun yozildi
-      /*  val apiServis=ApiClinet.getApiServis(requireContext())
-        for (i in 1 until 4){
-            apiServis.getSeller(i).enqueue(object :Callback<getSeller>{
-                override fun onResponse(call: Call<getSeller>, response: Response<getSeller>) {
-                    if (response.isSuccessful && response.body() != null){
-                        Toast.makeText(requireContext(), "${response.body()}", Toast.LENGTH_SHORT).show()
-                    }else{
-                        Toast.makeText(requireContext(), "responsdagi hatolik", Toast.LENGTH_SHORT).show()
-                    }
-                }
-
-                override fun onFailure(call: Call<getSeller>, t: Throwable) {
-                    Toast.makeText(requireContext(), "Failure ga tushdi", Toast.LENGTH_SHORT).show()
-                }
-            })
-        }
-       */
-        
         return binding.root
     }
 

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ProductAboutFragment">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".fragment.ClientAboutFragment">
+        android:orientation="vertical">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/clinet_img"
@@ -43,9 +42,9 @@
 
                 <LinearLayout
                     android:id="@+id/linearLayout3"
-                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="?actionBarSize"
+                    android:layout_marginTop="20dp"
                     android:gravity="center"
                     app:layout_constraintTop_toTopOf="parent">
 
@@ -56,7 +55,7 @@
                         android:layout_gravity="center"
                         android:layout_marginEnd="5dp"
                         android:fontFamily="serif"
-                        android:text="name"
+
                         android:textColor="@color/black"
                         android:textSize="25sp"
                         android:textStyle="bold" />
@@ -68,7 +67,7 @@
                         android:layout_gravity="center"
                         android:layout_marginStart="5dp"
                         android:fontFamily="serif"
-                        android:text="name"
+
                         android:textColor="@color/black"
                         android:textSize="25sp"
                         android:textStyle="bold" />
@@ -78,20 +77,20 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_marginTop="-50dp"
+                    android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
                     <com.google.android.material.card.MaterialCardView
                         android:id="@+id/card_address"
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
-                        android:layout_marginBottom="20dp"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/white"
                         android:clickable="true"
@@ -114,10 +113,11 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="serif"
-                                android:text="mazil"
+
                                 android:textAllCaps="false"
                                 android:textColor="@color/black"
                                 android:textSize="25sp" />
+
                             <TextView
                                 android:id="@+id/product_olchov"
                                 android:layout_width="wrap_content"
@@ -125,7 +125,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="0dp"
                                 android:fontFamily="serif"
-                                android:text="mazil"
+
                                 android:textAllCaps="false"
                                 android:textColor="@color/black"
                                 android:textSize="15sp" />
@@ -136,9 +136,9 @@
                         android:id="@+id/card_address1"
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
-                        android:layout_marginBottom="20dp"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/white"
                         android:clickable="true"
@@ -155,27 +155,16 @@
 
 
                             <TextView
-                                android:id="@+id/product_miqdor2"
+                                android:id="@+id/product_narx"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:layout_marginTop="5dp"
+                                android:layout_marginTop="15dp"
                                 android:fontFamily="serif"
-                                android:text="mazil"
+
                                 android:textAllCaps="false"
                                 android:textColor="@color/black"
                                 android:textSize="25sp" />
-                            <TextView
-                                android:id="@+id/product_olchov2"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="0dp"
-                                android:fontFamily="serif"
-                                android:text="mazil"
-                                android:textAllCaps="false"
-                                android:textColor="@color/black"
-                                android:textSize="15sp" />
                         </LinearLayout>
                     </com.google.android.material.card.MaterialCardView>
 
@@ -183,9 +172,9 @@
                         android:id="@+id/card_address2"
                         android:layout_width="match_parent"
                         android:layout_height="65dp"
-                        android:layout_marginBottom="20dp"
                         android:layout_gravity="center"
                         android:layout_marginHorizontal="20dp"
+                        android:layout_marginBottom="20dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/white"
                         android:clickable="true"
@@ -202,24 +191,25 @@
 
 
                             <TextView
-                                android:id="@+id/product_miqdor1"
+                                android:id="@+id/product_sana"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="serif"
-                                android:text="mazil"
+
                                 android:textAllCaps="false"
                                 android:textColor="@color/black"
                                 android:textSize="25sp" />
+
                             <TextView
-                                android:id="@+id/product_olchov1"
+                                android:id="@+id/write_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="0dp"
                                 android:fontFamily="serif"
-                                android:text="mazil"
+                                android:text=""
                                 android:textAllCaps="false"
                                 android:textColor="@color/black"
                                 android:textSize="15sp" />
