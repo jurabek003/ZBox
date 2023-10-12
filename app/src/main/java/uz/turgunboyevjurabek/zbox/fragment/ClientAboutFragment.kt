@@ -69,7 +69,7 @@ class ClientAboutFragment : Fragment() {
                             Toast.makeText(requireContext(), response.body()!!.tel, Toast.LENGTH_SHORT).show()
 
                         }catch (e:IllegalStateException){
-                            apiWorking()
+
                         }
                     }else{
                         Toast.makeText(requireContext(), "elsga tushdi ", Toast.LENGTH_SHORT).show()
