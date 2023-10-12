@@ -56,17 +56,21 @@ class ClientAboutFragment : Fragment() {
             apiServis.getClientId(idNumber).enqueue(object :Callback<Clients_Get>{
                 override fun onResponse(call: Call<Clients_Get>, response: Response<Clients_Get>) {
                     if (response.isSuccessful && response.body()!=null){
-                        binding.clientName.text= response.body()!!.ism
-                        binding.clientLastName.text=response.body()!!.fam
-                        binding.cardClientAddress.text=response.body()!!.manzil
-                        binding.cardClientSumma.text= "${response.body()!!.umumiySumma.toString()} so'm"
+                        try {
+                            binding.clientName.text= response.body()!!.ism
+                            binding.clientLastName.text=response.body()!!.fam
+                            binding.cardClientAddress.text=response.body()!!.manzil
+                            binding.cardClientSumma.text= "${response.body()!!.umumiySumma.toString()} so'm"
 
-                        phoneNumber=response.body()!!.tel
-                        name= response.body()!!.ism
-                        lastName=response.body()!!.fam
+                            phoneNumber=response.body()!!.tel
+                            name= response.body()!!.ism
+                            lastName=response.body()!!.fam
 
-                        Toast.makeText(requireContext(), response.body()!!.tel, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(requireContext(), response.body()!!.tel, Toast.LENGTH_SHORT).show()
 
+                        }catch (e:IllegalStateException){
+                            apiWorking()
+                        }
                     }else{
                         Toast.makeText(requireContext(), "elsga tushdi ", Toast.LENGTH_SHORT).show()
                     }

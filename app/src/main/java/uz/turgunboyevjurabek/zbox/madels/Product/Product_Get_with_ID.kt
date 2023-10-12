@@ -2,6 +2,7 @@ package uz.turgunboyevjurabek.zbox.madels.Product
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Product_Get_with_ID(
     @SerializedName("hajmi")
@@ -20,4 +21,4 @@ data class Product_Get_with_ID(
     val olchov: String,
     @SerializedName("sotuvchi")
     val sotuvchi: Int
-)
+):Serializable

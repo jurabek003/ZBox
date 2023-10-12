@@ -47,10 +47,20 @@ class OrderFragment : Fragment(),RvAdapterOrder.ItemClick {
         list = ArrayList()
         list_son= ArrayList()
         list_rv= ArrayList()
-        ordersGetFromApi()
 
         return binding.root
     }
+
+    override fun onResume() {
+        super.onResume()
+        ordersGetFromApi()
+
+        binding.btnBackOrder.setOnClickListener {
+            findNavController().popBackStack()
+        }
+
+    }
+    
     private fun ordersGetFromApi() {
         apiServis=ApiClinet.getApiServis(requireContext())
         apiServis.getOrders().enqueue(object :Callback<ArrayList<Order_get>>{
@@ -141,8 +151,15 @@ class OrderFragment : Fragment(),RvAdapterOrder.ItemClick {
 
      */
 
-   override fun itemClick(order_get: Order_get, position: Int, productGetWithId: Product_Get_with_ID, ) {
-  //      findNavController().navigate(R.id.orderAboutFragment, bundleOf("keyOrder" to order_get,"keyProduct" to productGetWithId ))
+   override fun itemClick(
+       list: ArrayList<Order_get>,
+       list2: ArrayList<Product_Get_with_ID>,
+       position: Int
+   ) {
+//        findNavController().navigate(R.id.orderAboutFragment, bundleOf("keyOrderClient" to list[position].client,"keyOrderSeller" to list[position].sotuvchi,
+//            "keyOrderSana" to list[position].sana,"keyOrderSumma" to list[position].summa,"keyOrderTSumma" to list[position].tolanganSumma,"keyProductName" to list2[position].nom))
+//    }
+    findNavController().navigate(R.id.orderAboutFragment, bundleOf("keyOrder" to list,"keyProduct" to list2,"keyPosition" to position))
     }
 
 }
