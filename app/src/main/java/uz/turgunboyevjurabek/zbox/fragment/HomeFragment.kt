@@ -27,18 +27,20 @@ class HomeFragment : Fragment() {
         binding.btnDrawer.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-        binding.btn3.setOnClickListener {
+
+
+        binding.btnProduct.setOnClickListener {
             findNavController().navigate(R.id.productFragment)
         }
-        binding.btn4.setOnClickListener {
-            findNavController().navigate(R.id.clientFragment)
-        }
-        binding.btn1.setOnClickListener {
-            findNavController().navigate(R.id.sellerFragment)
-        }
-        binding.btn2.setOnClickListener {
-            findNavController().navigate(R.id.orderFragment)
-        }
+//        binding.btn4.setOnClickListener {
+//            findNavController().navigate(R.id.clientFragment)
+//        }
+//        binding.btn1.setOnClickListener {
+//            findNavController().navigate(R.id.sellerFragment)
+//        }
+//        binding.btn2.setOnClickListener {
+//            findNavController().navigate(R.id.orderFragment)
+//        }
 
 
 
