@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:fitsSystemWindows="true"
     tools:context=".fragment.OrderFragment">
-
-    <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
+        app:layout_constraintTop_toTopOf="parent"
         android:background="#0091EA"
         android:orientation="horizontal">
         <ImageView
@@ -22,10 +23,13 @@
             android:layout_marginStart="20dp"
             android:src="@drawable/ic_back" />
     </LinearLayout>
+
 <ScrollView
     android:id="@+id/scroll_view_order"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -222,17 +226,16 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
-
-
     </LinearLayout>
 </ScrollView>
 
 <androidx.recyclerview.widget.RecyclerView
-    android:visibility="gone"
     android:id="@+id/rv_order"
     tools:listitem="@layout/item_order_rv"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="0dp"
     app:spanCount="2"
+    android:visibility="gone"
+    app:layout_constraintTop_toBottomOf="@+id/linearLayout"
     app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"/>
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

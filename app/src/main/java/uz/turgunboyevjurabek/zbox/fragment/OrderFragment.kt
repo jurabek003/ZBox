@@ -55,6 +55,7 @@ class OrderFragment : Fragment(),RvAdapterOrder.ItemClick {
         super.onResume()
         ordersGetFromApi()
 
+
         binding.btnBackOrder.setOnClickListener {
             findNavController().popBackStack()
         }
