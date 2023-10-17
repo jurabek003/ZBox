@@ -91,8 +91,15 @@
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/alegreya"
                         android:scaleType="centerInside"
+                        android:visibility="gone"
                         android:text="Client name"
                         android:textColor="@color/black" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lotti_client_name"
+                        android:layout_width="80dp"
+                        android:layout_height="15dp"
+                        app:lottie_rawRes="@raw/anim_1"
+                        android:layout_gravity="center"/>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -130,10 +137,17 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
+                        android:visibility="gone"
                         android:fontFamily="@font/alegreya"
                         android:scaleType="centerInside"
                         android:text="Seller name"
                         android:textColor="@color/black" />
+                    <com.airbnb.lottie.LottieAnimationView
+                        android:id="@+id/lotti_seller_name"
+                        android:layout_width="80dp"
+                        android:layout_height="15dp"
+                        app:lottie_rawRes="@raw/anim_1"
+                        android:layout_gravity="center"/>
 
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -181,7 +195,15 @@
                             android:textColor="@color/black"
                             android:fontFamily="@font/alegreya"
                             android:layout_gravity="center"
+                            android:visibility="gone"
                             android:layout_marginTop="5dp"/>
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lotti_about_summa"
+                            android:layout_width="110dp"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5dp"
+                            app:lottie_rawRes="@raw/anim_1"
+                            android:layout_gravity="center"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
@@ -213,6 +235,7 @@
                             android:layout_gravity="center"
                             android:layout_marginTop="10dp"/>
                         <TextView
+                            android:id="@+id/amount_paid_order"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textAllCaps="false"
@@ -220,7 +243,15 @@
                             android:textColor="@color/black"
                             android:fontFamily="serif"
                             android:layout_gravity="center"
+                            android:visibility="gone"
                             android:layout_marginTop="5dp"/>
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lotti_amount_paid"
+                            android:layout_width="110dp"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5dp"
+                            app:lottie_rawRes="@raw/anim_1"
+                            android:layout_gravity="center"/>
                     </LinearLayout>
 
                 </com.google.android.material.card.MaterialCardView>
@@ -267,7 +298,15 @@
                             android:textColor="@color/black"
                             android:fontFamily="@font/alegreya"
                             android:layout_gravity="center"
+                            android:visibility="gone"
                             android:layout_marginTop="5dp"/>
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lotti_date"
+                            android:layout_width="110dp"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5dp"
+                            app:lottie_rawRes="@raw/anim_1"
+                            android:layout_gravity="center"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView><com.google.android.material.card.MaterialCardView
                     android:layout_width="100dp"
@@ -303,7 +342,15 @@
                             android:textColor="@color/black"
                             android:fontFamily="@font/alegreya"
                             android:layout_gravity="center"
+                            android:visibility="gone"
                             android:layout_marginTop="5dp"/>
+                        <com.airbnb.lottie.LottieAnimationView
+                            android:id="@+id/lotti_dept_summa"
+                            android:layout_width="110dp"
+                            android:layout_height="15dp"
+                            android:layout_marginTop="5dp"
+                            app:lottie_rawRes="@raw/anim_1"
+                            android:layout_gravity="center"/>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 

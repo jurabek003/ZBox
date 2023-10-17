@@ -25,7 +25,7 @@ class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val l
             itemOrderRvBinding.itemOrderSana.text=order_get.sana
 
             itemOrderRvBinding.root.setOnClickListener {
-                itemClick.itemClick(order_get,position,productGetWithId)
+                itemClick.itemClick(list2!!,list1!!,position)
             }
         }
 
@@ -42,7 +42,7 @@ class RvAdapterOrder(val context: Context, val list2:ArrayList<Order_get>?,val l
         holder.onBind(list2!![position],position, list1!![position])
     }
     interface ItemClick{
-        fun itemClick(order_get: Order_get,position: Int,productGetWithId: Product_Get_with_ID)
+        fun itemClick(list:ArrayList<Order_get>, list2:ArrayList<Product_Get_with_ID>,position: Int)
     }
 
 }

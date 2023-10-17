@@ -55,10 +55,8 @@ dependencies {
     implementation 'com.github.florent37:runtime-permission-kotlin:1.1.2'
     // for circleImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
-    //rxJava
-    implementation "io.reactivex.rxjava2:rxjava:2.2.7"
-    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
-
+    //Lotti animation
+    implementation 'com.airbnb.android:lottie:3.4.0'
         // agar gredle hatolik bersa kerak bo'ladi
         // android.enableJetifier=true
 

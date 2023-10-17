@@ -2,6 +2,7 @@ package uz.turgunboyevjurabek.zbox.madels.Order
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Order_get(
     @SerializedName("client")
@@ -23,4 +24,4 @@ data class Order_get(
     @SerializedName("tolangan_summa")
     val tolanganSumma: Int
 
-)
+):Serializable
